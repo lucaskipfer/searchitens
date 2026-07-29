@@ -555,6 +555,8 @@ async function checkMarketAvailability() {
   }
   render();
 
+  let firstError = null;
+  let failCount = 0;
   for (const it of toCheck) {
     const key = itemKey(it);
     try {
@@ -562,6 +564,8 @@ async function checkMarketAvailability() {
       marketStatus[key] = exists ? "yes" : "no";
     } catch (e) {
       marketStatus[key] = undefined;
+      failCount++;
+      if (!firstError) firstError = e;
       console.warn("Falha ao consultar mercado para", it.set, it.parte, e);
     }
     saveMarketCache();
@@ -571,6 +575,13 @@ async function checkMarketAvailability() {
 
   marketChecking = false;
   if (btn) { btn.disabled = false; btn.textContent = "Checar mercado"; }
+
+  if (firstError) {
+    alert(
+      "Falha ao consultar o mercado em " + failCount + " de " + toCheck.length + " item(ns).\n\n" +
+      "Erro: " + (firstError && firstError.message ? firstError.message : String(firstError))
+    );
+  }
 }
 
 function extractBonusCategory(bonus) {

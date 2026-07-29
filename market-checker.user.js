@@ -61,7 +61,10 @@
         data: body,
         onload: function (response) {
           if (response.status < 200 || response.status >= 300) {
-            reject(new Error("HTTP " + response.status));
+            reject(new Error(
+              "HTTP " + response.status + " (" + (response.statusText || "sem status text") + ") — " +
+              String(response.responseText || "").slice(0, 200)
+            ));
             return;
           }
           try {
@@ -71,14 +74,21 @@
               : (data && data.data && data.data.lots && data.data.lots.Lots ? data.data.lots.Lots.length : 0);
             resolve((total || 0) > 0);
           } catch (e) {
-            reject(e);
+            reject(new Error(
+              "Resposta não é JSON válido (provável bloqueio Cloudflare): " +
+              String(response.responseText || "").slice(0, 200)
+            ));
           }
         },
-        onerror: function () {
-          reject(new Error("GM_xmlhttpRequest falhou"));
+        onerror: function (response) {
+          reject(new Error(
+            "GM_xmlhttpRequest falhou: " +
+            (response && response.error ? response.error : "erro de rede/CORS na extensão") +
+            (response && response.status ? (" (HTTP " + response.status + ")") : "")
+          ));
         },
         ontimeout: function () {
-          reject(new Error("GM_xmlhttpRequest timeout"));
+          reject(new Error("GM_xmlhttpRequest: tempo esgotado"));
         }
       });
     });
