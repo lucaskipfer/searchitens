@@ -381,6 +381,7 @@
             <option value="none">Sem status</option>
           </select>
           <button id="checkMarketBtn" title="Consulta o mercado da MuDream apenas para os itens visíveis com os filtros atuais (busca, status e bônus)">Checar mercado</button>
+          <span class="market-badge" id="marketScriptStatus" title="O site da MuDream bloqueia essa consulta vinda de outra página; é necessário o userscript Tampermonkey para funcionar">Verificando userscript…</span>
         </div>
       </div>
       <div class="bonus-filters" id="bonusFilters"></div>
@@ -484,7 +485,18 @@ function renderMarketBadge(key) {
   return `<span class="market-badge">—</span>`;
 }
 
+function isMarketCheckerScriptReady() {
+  return typeof window.__gmMarketCheck === "function";
+}
+
 async function queryLotExists(setName, parte) {
+  // O mercado da MuDream bloqueia chamadas via CORS a partir de outros domínios.
+  // O userscript Tampermonkey injeta __gmMarketCheck usando GM_xmlhttpRequest,
+  // que roda com a sessão logada do navegador e ignora essa trava.
+  if (isMarketCheckerScriptReady()) {
+    return window.__gmMarketCheck(setName, parte);
+  }
+
   const body = {
     operationName: "GET_ALL_LOTS",
     query: MARKET_QUERY,
@@ -516,6 +528,17 @@ function sleep(ms) {
 
 async function checkMarketAvailability() {
   if (marketChecking) return;
+
+  if (!isMarketCheckerScriptReady()) {
+    alert(
+      "Checar mercado precisa do userscript da MuDream Collections instalado no navegador " +
+      "(Tampermonkey), pois o site da MuDream bloqueia essa consulta vinda de outra página.\n\n" +
+      "Instale o Tampermonkey e o userscript \"market-checker.user.js\" (veja o README do repositório) " +
+      "e recarregue esta página."
+    );
+    return;
+  }
+
   const toCheck = getVisibleItems();
   if (toCheck.length === 0) return;
 
@@ -619,6 +642,30 @@ async function loadData() {
   sets = await setsRes.json();
   renderBonusFilters();
   render();
+  watchMarketCheckerScript();
+}
+
+function watchMarketCheckerScript() {
+  const el = document.getElementById("marketScriptStatus");
+  if (!el) return;
+
+  let attempts = 0;
+  let timer = null;
+  const check = () => {
+    attempts++;
+    if (isMarketCheckerScriptReady()) {
+      el.textContent = "Userscript ativo";
+      el.className = "market-badge yes";
+      if (timer) clearInterval(timer);
+    } else if (attempts >= 6) {
+      // userscript demora um pouco pra injetar em alguns navegadores; depois de ~3s, assume ausente
+      el.textContent = "Userscript não instalado";
+      el.className = "market-badge no";
+      if (timer) clearInterval(timer);
+    }
+  };
+  check();
+  timer = setInterval(check, 500);
 }
 
 function renderBonusFilters() {
