@@ -1,0 +1,1663 @@
+[
+    {
+        "set":  "Pad",
+        "parte":  "Helm",
+        "level":  "+11",
+        "precoZen":  3280000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max SD",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Pad",
+        "parte":  "Armor",
+        "level":  "+3",
+        "precoZen":  864000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Pad",
+        "parte":  "Pants",
+        "level":  "+6",
+        "precoZen":  2057000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Pad",
+        "parte":  "Gloves",
+        "level":  "+2",
+        "precoZen":  945000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Pad",
+        "parte":  "Boots",
+        "level":  "+3",
+        "precoZen":  820000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Leather",
+        "parte":  "Helm",
+        "level":  "+3",
+        "precoZen":  1496000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Leather",
+        "parte":  "Armor",
+        "level":  "+3",
+        "precoZen":  1188000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Leather",
+        "parte":  "Pants",
+        "level":  "+0",
+        "precoZen":  820000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Leather",
+        "parte":  "Gloves",
+        "level":  "+6",
+        "precoZen":  1353000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Leather",
+        "parte":  "Boots",
+        "level":  "+3",
+        "precoZen":  1496000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Vine",
+        "parte":  "Helm",
+        "level":  "+5",
+        "precoZen":  1215000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Vine",
+        "parte":  "Armor",
+        "level":  "+0",
+        "precoZen":  337500000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Vine",
+        "parte":  "Pants",
+        "level":  "+8",
+        "precoZen":  2665000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Vine",
+        "parte":  "Gloves",
+        "level":  "+6",
+        "precoZen":  2057000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Vine",
+        "parte":  "Boots",
+        "level":  "+2",
+        "precoZen":  1190000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Bronze",
+        "parte":  "Helm",
+        "level":  "+1",
+        "precoZen":  612000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Bronze",
+        "parte":  "Armor",
+        "level":  "+3",
+        "precoZen":  1496000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Bronze",
+        "parte":  "Pants",
+        "level":  "+4",
+        "precoZen":  2214000000,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Bronze",
+        "parte":  "Gloves",
+        "level":  "+2",
+        "precoZen":  850500000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Bronze",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  2057000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Bone",
+        "parte":  "Helm",
+        "level":  "+1",
+        "precoZen":  612000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Bone",
+        "parte":  "Armor",
+        "level":  "+7",
+        "precoZen":  1836000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Bone",
+        "parte":  "Pants",
+        "level":  "+9",
+        "precoZen":  2009000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Bone",
+        "parte":  "Gloves",
+        "level":  "+0",
+        "precoZen":  675000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Bone",
+        "parte":  "Boots",
+        "level":  "+1",
+        "precoZen":  1122000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Scale",
+        "parte":  "Helm",
+        "level":  "+3",
+        "precoZen":  820000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Scale",
+        "parte":  "Armor",
+        "level":  "+6",
+        "precoZen":  742500000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Scale",
+        "parte":  "Pants",
+        "level":  "+3",
+        "precoZen":  1496000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Scale",
+        "parte":  "Gloves",
+        "level":  "+4",
+        "precoZen":  1291500000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Scale",
+        "parte":  "Boots",
+        "level":  "+11",
+        "precoZen":  2176000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Wind",
+        "parte":  "Helm",
+        "level":  "+6",
+        "precoZen":  3157000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Wind",
+        "parte":  "Armor",
+        "level":  "+7",
+        "precoZen":  3672000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Wind",
+        "parte":  "Pants",
+        "level":  "+0",
+        "precoZen":  1485000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Wind",
+        "parte":  "Gloves",
+        "level":  "+11",
+        "precoZen":  6560000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Max SD",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Wind",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  3608000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Violent Wind",
+        "parte":  "Helm",
+        "level":  "+9",
+        "precoZen":  2583000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max SD",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Violent Wind",
+        "parte":  "Armor",
+        "level":  "+1",
+        "precoZen":  612000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Violent Wind",
+        "parte":  "Pants",
+        "level":  "+2",
+        "precoZen":  595000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Violent Wind",
+        "parte":  "Gloves",
+        "level":  "+7",
+        "precoZen":  1224000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Violent Wind",
+        "parte":  "Boots",
+        "level":  "+9",
+        "precoZen":  1512000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Sphinx",
+        "parte":  "Helm",
+        "level":  "+2",
+        "precoZen":  2380000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Sphinx",
+        "parte":  "Armor",
+        "level":  "+2",
+        "precoZen":  1190000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Sphinx",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  7216000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Sphinx",
+        "parte":  "Gloves",
+        "level":  "+7",
+        "precoZen":  2040000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Sphinx",
+        "parte":  "Boots",
+        "level":  "+2",
+        "precoZen":  2079000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Brass",
+        "parte":  "Helm",
+        "level":  "+0",
+        "precoZen":  850000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Brass",
+        "parte":  "Armor",
+        "level":  "+3",
+        "precoZen":  1944000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Brass",
+        "parte":  "Pants",
+        "level":  "+1",
+        "precoZen":  1224000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Brass",
+        "parte":  "Gloves",
+        "level":  "+3",
+        "precoZen":  2992000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Brass",
+        "parte":  "Boots",
+        "level":  "+8",
+        "precoZen":  3510000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Spirit",
+        "parte":  "Helm",
+        "level":  "+10",
+        "precoZen":  3075000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Spirit",
+        "parte":  "Armor",
+        "level":  "+9",
+        "precoZen":  3024000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Spirit",
+        "parte":  "Pants",
+        "level":  "+10",
+        "precoZen":  4455000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Spirit",
+        "parte":  "Gloves",
+        "level":  "+4",
+        "precoZen":  1530000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Spirit",
+        "parte":  "Boots",
+        "level":  "+3",
+        "precoZen":  2992000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Plate",
+        "parte":  "Helm",
+        "level":  "+4",
+        "precoZen":  1530000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Plate",
+        "parte":  "Armor",
+        "level":  "+9",
+        "precoZen":  4536000000,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Luck",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Plate",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  3808000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max SD",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Plate",
+        "parte":  "Gloves",
+        "level":  "+6",
+        "precoZen":  3608000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Zen Drop",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Plate",
+        "parte":  "Boots",
+        "level":  "+4",
+        "precoZen":  2583000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Silk",
+        "parte":  "Helm",
+        "level":  "+4",
+        "precoZen":  1107000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Silk",
+        "parte":  "Armor",
+        "level":  "+6",
+        "precoZen":  2706000000,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Silk",
+        "parte":  "Pants",
+        "level":  "+9",
+        "precoZen":  2009000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Silk",
+        "parte":  "Gloves",
+        "level":  "+9",
+        "precoZen":  2009000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Silk",
+        "parte":  "Boots",
+        "level":  "+0",
+        "precoZen":  1127500000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Storm Zahard",
+        "parte":  "Helm",
+        "level":  "+5",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Zahard",
+        "parte":  "Armor",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Zahard",
+        "parte":  "Pants",
+        "level":  "+2",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Storm Zahard",
+        "parte":  "Boots",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Black Dragon",
+        "parte":  "Helm",
+        "level":  "+4",
+        "precoZen":  3874500000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Black Dragon",
+        "parte":  "Armor",
+        "level":  "+1",
+        "precoZen":  2583000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Reflect",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Black Dragon",
+        "parte":  "Pants",
+        "level":  "+3",
+        "precoZen":  3564000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Black Dragon",
+        "parte":  "Gloves",
+        "level":  "+3",
+        "precoZen":  4488000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Black Dragon",
+        "parte":  "Boots",
+        "level":  "+5",
+        "precoZen":  4305000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max Life",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Grand Soul",
+        "parte":  "Helm",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Grand Soul",
+        "parte":  "Armor",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Grand Soul",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Grand Soul",
+        "parte":  "Gloves",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max SD",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Grand Soul",
+        "parte":  "Boots",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Holy Spirit",
+        "parte":  "Helm",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Holy Spirit",
+        "parte":  "Armor",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Holy Spirit",
+        "parte":  "Pants",
+        "level":  "+9",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Holy Spirit",
+        "parte":  "Gloves",
+        "level":  "+7",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Holy Spirit",
+        "parte":  "Boots",
+        "level":  "+2",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Dark Steel",
+        "parte":  "Helm",
+        "level":  "+5",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Dark Steel",
+        "parte":  "Armor",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Steel",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Steel",
+        "parte":  "Gloves",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Steel",
+        "parte":  "Boots",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Dark Phoenix",
+        "parte":  "Helm",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Phoenix",
+        "parte":  "Armor",
+        "level":  "+9",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Phoenix",
+        "parte":  "Pants",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Phoenix",
+        "parte":  "Gloves",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Phoenix",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Thunder Hawk",
+        "parte":  "Armor",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Thunder Hawk",
+        "parte":  "Pants",
+        "level":  "+9",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Thunder Hawk",
+        "parte":  "Gloves",
+        "level":  "+9",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max SD",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Thunder Hawk",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Great Dragon",
+        "parte":  "Helm",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Great Dragon",
+        "parte":  "Armor",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Great Dragon",
+        "parte":  "Pants",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Reflect",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Great Dragon",
+        "parte":  "Gloves",
+        "level":  "+9",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Great Dragon",
+        "parte":  "Boots",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Soul",
+        "parte":  "Helm",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Dark Soul",
+        "parte":  "Armor",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Soul",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Max SD",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Soul",
+        "parte":  "Gloves",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Soul",
+        "parte":  "Boots",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Hurricane",
+        "parte":  "Armor",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Hurricane",
+        "parte":  "Pants",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Hurricane",
+        "parte":  "Gloves",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Hurricane",
+        "parte":  "Boots",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Red Spirit",
+        "parte":  "Helm",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Red Spirit",
+        "parte":  "Armor",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Red Spirit",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Red Spirit",
+        "parte":  "Gloves",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Red Spirit",
+        "parte":  "Boots",
+        "level":  "+7",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Master",
+        "parte":  "Helm",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Max SD",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Master",
+        "parte":  "Armor",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dark Master",
+        "parte":  "Pants",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Dark Master",
+        "parte":  "Gloves",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dark Master",
+        "parte":  "Boots",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Blitz",
+        "parte":  "Helm",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Blitz",
+        "parte":  "Armor",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Storm Blitz",
+        "parte":  "Pants",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Blitz",
+        "parte":  "Gloves",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Storm Blitz",
+        "parte":  "Boots",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Piercing Grove",
+        "parte":  "Helm",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Piercing Grove",
+        "parte":  "Armor",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Piercing Grove",
+        "parte":  "Pants",
+        "level":  "+2",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Piercing Grove",
+        "parte":  "Boots",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    }
+]

@@ -1,0 +1,164 @@
+[
+    {
+        "set":  "Bone",
+        "classe":  "DW / MG",
+        "bonus":  "Damage +2%",
+        "valorTotalBZen":  "6.254"
+    },
+    {
+        "set":  "Leather",
+        "classe":  "DK / MG / DL / RF",
+        "bonus":  "Max Life +1000",
+        "valorTotalBZen":  "6.353"
+    },
+    {
+        "set":  "Scale",
+        "classe":  "DK / MG / DL / RF",
+        "bonus":  "Max Defense +2%",
+        "valorTotalBZen":  "6.526"
+    },
+    {
+        "set":  "Violent Wind",
+        "classe":  "Summoner",
+        "bonus":  "Ignore Defense +1%",
+        "valorTotalBZen":  "6.526"
+    },
+    {
+        "set":  "Bronze",
+        "classe":  "DK / MG / DL",
+        "bonus":  "Attack Speed +15",
+        "valorTotalBZen":  "7.2295"
+    },
+    {
+        "set":  "Vine",
+        "classe":  "Elf",
+        "bonus":  "Max Life +1000",
+        "valorTotalBZen":  "7.4645"
+    },
+    {
+        "set":  "Pad",
+        "classe":  "DW / MG",
+        "bonus":  "Max Life +1000",
+        "valorTotalBZen":  "7.966"
+    },
+    {
+        "set":  "Silk",
+        "classe":  "Elf",
+        "bonus":  "Attack Speed +20",
+        "valorTotalBZen":  "8.9585"
+    },
+    {
+        "set":  "Brass",
+        "classe":  "DK / MG / RF",
+        "bonus":  "Shield Defense +2%",
+        "valorTotalBZen":  "10.52"
+    },
+    {
+        "set":  "Sphinx",
+        "classe":  "DW / MG",
+        "bonus":  "Max Life +1500",
+        "valorTotalBZen":  "14.905"
+    },
+    {
+        "set":  "Spirit",
+        "classe":  "Elf",
+        "bonus":  "Damage +3%",
+        "valorTotalBZen":  "15.076"
+    },
+    {
+        "set":  "Plate",
+        "classe":  "DK / MG / RF",
+        "bonus":  "Damage Decrease +1%",
+        "valorTotalBZen":  "16.065"
+    },
+    {
+        "set":  "Wind",
+        "classe":  "Elf",
+        "bonus":  "Max Defense +2%",
+        "valorTotalBZen":  "18.482"
+    },
+    {
+        "set":  "Storm Zahard",
+        "classe":  "RF",
+        "bonus":  "Max Life +2000",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Black Dragon",
+        "classe":  "DK",
+        "bonus":  "Attack Speed +30",
+        "valorTotalBZen":  "18.8145"
+    },
+    {
+        "set":  "Grand Soul",
+        "classe":  "MG",
+        "bonus":  "Max Defense +5%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Holy Spirit",
+        "classe":  "Elf",
+        "bonus":  "Damage Decrease +2%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Dark Steel",
+        "classe":  "DL",
+        "bonus":  "Max Life +2000",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Dark Phoenix",
+        "classe":  "BK",
+        "bonus":  "Max SD +6%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Thunder Hawk",
+        "classe":  "MG",
+        "bonus":  "Max Life +2000",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Great Dragon",
+        "classe":  "BK",
+        "bonus":  "Excellent Damage Rate +5%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Dark Soul",
+        "classe":  "MG",
+        "bonus":  "Ignore Defense +1%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Hurricane",
+        "classe":  "MG",
+        "bonus":  "Damage Decrease +3%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Red Spirit",
+        "classe":  "Elf",
+        "bonus":  "Max Life +2500",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Dark Master",
+        "classe":  "DL",
+        "bonus":  "Damage +8%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Storm Blitz",
+        "classe":  "Summoner",
+        "bonus":  "Attack Speed +40",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Piercing Grove",
+        "classe":  "RF",
+        "bonus":  "Max Life +2500",
+        "valorTotalBZen":  ""
+    }
+]

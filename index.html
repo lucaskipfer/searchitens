@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MuDream Collections — Meus Itens</title>
+<style>
+  :root {
+    --bg: #0f1116;
+    --panel: #171a22;
+    --panel-2: #1e2230;
+    --border: #2a2f3d;
+    --text: #e7e9ee;
+    --muted: #9aa1b2;
+    --accent: #7c9cff;
+    --accent-2: #4bd3a0;
+    --danger: #ff6b6b;
+    --gold: #e3b341;
+    --silver: #b8bfcc;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  header {
+    padding: 10px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex: 0 0 auto;
+    background: rgba(15,17,22,0.95);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
+  header h1 {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 600;
+  }
+  header h1 span { color: var(--accent); }
+  .stats {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .stats b { color: var(--text); font-size: 13px; }
+  .stats .dot-selecionado b { color: var(--accent); }
+  .stats .dot-comprado b { color: var(--silver); }
+  .stats .dot-pronto b { color: var(--gold); }
+  main {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 20px;
+    padding: 14px 28px;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  @media (max-width: 980px) {
+    main { grid-template-columns: 1fr; overflow-y: auto; }
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .catalog-sticky-header {
+    flex: 0 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--panel);
+    border-radius: 10px 10px 0 0;
+  }
+  .catalog-scroll {
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .panel-header {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .panel-header h2 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .controls {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  input[type="search"], select {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    outline: none;
+  }
+  input[type="search"]:focus, select:focus { border-color: var(--accent); }
+  button {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #0f1116; font-weight: 600; }
+  button.danger { color: var(--danger); }
+  .set-group {
+    border-bottom: 1px solid var(--border);
+  }
+  .set-group:last-child { border-bottom: none; }
+  .set-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+    background: var(--panel-2);
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .set-title {
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .set-title .badge {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .set-progress {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .progress-bar {
+    width: 70px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent-2);
+  }
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .items-table th {
+    text-align: left;
+    padding: 8px 16px;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .items-table td {
+    padding: 8px 16px;
+    border-top: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .items-table tr.status-selecionado td { background: rgba(124,156,255,0.08); }
+  .items-table tr.status-comprado td { background: rgba(184,191,204,0.08); }
+  .items-table tr.status-pronto td { background: rgba(227,179,65,0.1); }
+  .items-table tr:hover td { filter: brightness(1.15); }
+  .status-controls {
+    display: flex;
+    gap: 3px;
+  }
+  .status-btn {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    opacity: 0.5;
+  }
+  .status-btn:hover { opacity: 1; border-color: var(--accent); }
+  .status-btn.sel.active { background: rgba(124,156,255,0.25); border-color: var(--accent); color: var(--accent); opacity: 1; }
+  .status-btn.comp.active { background: rgba(184,191,204,0.25); border-color: var(--silver); color: var(--silver); opacity: 1; }
+  .status-btn.pronto.active { background: rgba(227,179,65,0.25); border-color: var(--gold); color: var(--gold); opacity: 1; }
+  .excellent-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: var(--panel-2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .price { color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .empty-price { color: var(--muted); font-style: italic; }
+  .hidden { display: none !important; }
+  .side-section { border-bottom: 1px solid var(--border); }
+  .side-section:last-child { border-bottom: none; }
+  .side-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--panel-2);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .side-section-header.sel { color: var(--accent); }
+  .side-section-header.comp { color: var(--silver); }
+  .side-section-header.pronto { color: var(--gold); }
+  .side-list {
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+  .side-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    gap: 10px;
+  }
+  .side-item .desc { display: flex; flex-direction: column; gap: 2px; }
+  .side-item .desc .name { font-weight: 600; }
+  .side-item .desc .meta { font-size: 11px; color: var(--muted); }
+  .remove-btn {
+    background: transparent;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px 6px;
+  }
+  .empty-state {
+    padding: 16px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .total-row {
+    padding: 14px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .total-row .value { color: var(--gold); }
+  .chip {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    background: rgba(75,211,160,0.15);
+    color: var(--accent-2);
+  }
+  .bonus-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 6px 14px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .bonus-chip {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .bonus-chip:hover { border-color: var(--accent); color: var(--text); }
+  .bonus-chip.active {
+    background: rgba(124,156,255,0.2);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .bonus-chip .count { opacity: 0.7; margin-left: 3px; }
+  .set-total {
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .set-total .amount { color: var(--gold); opacity: 0.9; }
+  .market-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--panel-2);
+    cursor: default;
+  }
+  .market-badge.yes { color: var(--accent-2); border-color: var(--accent-2); background: rgba(75,211,160,0.12); }
+  .market-badge.no { color: var(--danger); border-color: var(--danger); background: rgba(255,107,107,0.1); }
+  .market-badge.loading { opacity: 0.6; font-style: italic; }
+</style>
+</head>
+<body>
+<header>
+  <h1>MuDream <span>Collections</span> — Meus Itens</h1>
+  <div class="stats">
+    <div class="dot-selecionado">Selecionados: <b id="statSelecionado">0</b></div>
+    <div class="dot-comprado">Comprados: <b id="statComprado">0</b></div>
+    <div class="dot-pronto">Prontos: <b id="statPronto">0</b></div>
+    <div>Total gasto: <b id="statSpent">0</b> Zen</div>
+    <div>Sets completos: <b id="statSetsComplete">0</b></div>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="catalog-sticky-header">
+      <div class="panel-header">
+        <h2>Catálogo de Itens</h2>
+        <div class="controls">
+          <input type="search" id="searchInput" placeholder="Buscar set ou opção excellent...">
+          <select id="statusFilter">
+            <option value="all">Todos</option>
+            <option value="selecionado">Só selecionados</option>
+            <option value="comprado">Só comprados</option>
+            <option value="pronto">Só prontos</option>
+            <option value="none">Sem status</option>
+          </select>
+          <button id="checkMarketBtn" title="Consulta o mercado da MuDream para ver quais itens têm lote anunciado">Checar mercado</button>
+        </div>
+      </div>
+      <div class="bonus-filters" id="bonusFilters"></div>
+    </div>
+    <div class="catalog-scroll">
+      <div id="catalog"></div>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <div class="catalog-sticky-header">
+      <div class="panel-header">
+        <h2>Meus Itens</h2>
+        <button class="danger" id="clearAllBtn">Limpar tudo</button>
+      </div>
+    </div>
+    <div class="catalog-scroll">
+      <div class="side-section">
+        <div class="side-section-header pronto">Prontos <span id="countPronto">0</span></div>
+        <div class="side-list" id="listPronto"></div>
+      </div>
+      <div class="side-section">
+        <div class="side-section-header comp">Comprados <span id="countComprado">0</span></div>
+        <div class="side-list" id="listComprado"></div>
+      </div>
+      <div class="side-section">
+        <div class="side-section-header sel">Selecionados <span id="countSelecionado">0</span></div>
+        <div class="side-list" id="listSelecionado"></div>
+      </div>
+      <div class="total-row">
+        <span>Total gasto (comprados + prontos)</span>
+        <span class="value" id="purchasedTotal">0 Zen</span>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script>
+const STORAGE_KEY = "mudream_item_status_v2";
+const LEGACY_KEY = "mudream_purchased_items_v1";
+
+let items = [];
+let sets = [];
+let itemStatus = {};
+let activeBonusCategory = null;
+
+// ---- Verificação de disponibilidade no mercado (MuDream API) ----
+const MARKET_CACHE_KEY = "mudream_market_availability_v2";
+const MARKET_ENDPOINT = "https://mudream.online/api/graphql";
+const MARKET_QUERY = `
+  query GET_ALL_LOTS(
+    $offset: NonNegativeInt,
+    $limit: NonNegativeInt,
+    $sort: LotsSortInput,
+    $filter: LotsFilterInput
+  ) {
+    lots(
+      limit: $limit,
+      offset: $offset,
+      sort: $sort,
+      filter: $filter
+    ) {
+      Lots {
+        id
+      }
+      Pagination {
+        total
+      }
+    }
+  }
+`;
+
+// marketStatus[key] = "loading" | "yes" | "no" | undefined (não verificado)
+let marketStatus = {};
+let marketChecking = false;
+
+function loadMarketCache() {
+  try {
+    const raw = localStorage.getItem(MARKET_CACHE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      // só reaproveita resultados recentes (24h) para não ficar desatualizado
+      if (parsed.savedAt && Date.now() - parsed.savedAt < 24 * 60 * 60 * 1000) {
+        marketStatus = parsed.data || {};
+      }
+    }
+  } catch (e) {
+    marketStatus = {};
+  }
+}
+
+function saveMarketCache() {
+  localStorage.setItem(MARKET_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), data: marketStatus }));
+}
+
+function renderMarketBadge(key) {
+  const status = marketStatus[key];
+  if (status === "loading") return `<span class="market-badge loading">verificando…</span>`;
+  if (status === "yes") return `<span class="market-badge yes">No mercado</span>`;
+  if (status === "no") return `<span class="market-badge no">Não encontrado</span>`;
+  return `<span class="market-badge">—</span>`;
+}
+
+async function queryLotExists(setName, parte) {
+  const body = {
+    operationName: "GET_ALL_LOTS",
+    query: MARKET_QUERY,
+    variables: {
+      filter: {
+        name: setName.toLowerCase(),
+        type: [parte.toLowerCase()]
+      },
+      limit: 1,
+      offset: 0
+    }
+  };
+  const res = await fetch(MARKET_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const data = await res.json();
+  const total = data && data.data && data.data.lots && data.data.lots.Pagination
+    ? data.data.lots.Pagination.total
+    : (data && data.data && data.data.lots && data.data.lots.Lots ? data.data.lots.Lots.length : 0);
+  return (total || 0) > 0;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function checkMarketAvailability() {
+  if (marketChecking) return;
+  marketChecking = true;
+  const btn = document.getElementById("checkMarketBtn");
+  if (btn) { btn.disabled = true; btn.textContent = "Consultando…"; }
+
+  // uma consulta por item único (set + parte), em série, com pequeno intervalo
+  // entre chamadas para não sobrecarregar a API pública.
+  for (const it of items) {
+    const key = itemKey(it);
+    marketStatus[key] = "loading";
+  }
+  render();
+
+  for (const it of items) {
+    const key = itemKey(it);
+    try {
+      const exists = await queryLotExists(it.set, it.parte);
+      marketStatus[key] = exists ? "yes" : "no";
+    } catch (e) {
+      marketStatus[key] = undefined;
+      console.warn("Falha ao consultar mercado para", it.set, it.parte, e);
+    }
+    saveMarketCache();
+    render();
+    await sleep(250);
+  }
+
+  marketChecking = false;
+  if (btn) { btn.disabled = false; btn.textContent = "Checar mercado"; }
+}
+
+function extractBonusCategory(bonus) {
+  return (bonus || "").replace(/\s*\+\d+(\.\d+)?%?$/, "").trim();
+}
+
+function loadStatus() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    itemStatus = JSON.parse(raw);
+    return;
+  }
+  const legacy = localStorage.getItem(LEGACY_KEY);
+  if (legacy) {
+    const keys = JSON.parse(legacy);
+    itemStatus = {};
+    for (const k of keys) itemStatus[k] = "comprado";
+    saveStatus();
+    localStorage.removeItem(LEGACY_KEY);
+  }
+}
+
+function saveStatus() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(itemStatus));
+}
+
+function itemKey(it) {
+  return `${it.set}::${it.parte}`;
+}
+
+function getStatus(key) {
+  return itemStatus[key] || "none";
+}
+
+function setStatus(key, status) {
+  if (itemStatus[key] === status) {
+    delete itemStatus[key];
+  } else {
+    itemStatus[key] = status;
+  }
+  saveStatus();
+}
+
+function isOwned(key) {
+  const s = getStatus(key);
+  return s === "comprado" || s === "pronto";
+}
+
+function formatZen(n) {
+  if (n === null || n === undefined) return null;
+  return n.toLocaleString("pt-BR");
+}
+
+function formatCompactZen(n) {
+  if (n === null || n === undefined) return null;
+  if (n >= 1e9) return (n / 1e9).toFixed(2).replace(/\.?0+$/, "") + "B";
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.?0+$/, "") + "M";
+  return n.toLocaleString("pt-BR");
+}
+
+async function loadData() {
+  loadStatus();
+  loadMarketCache();
+  const [itemsRes, setsRes] = await Promise.all([
+    fetch("items.json"),
+    fetch("sets.json")
+  ]);
+  items = await itemsRes.json();
+  sets = await setsRes.json();
+  renderBonusFilters();
+  render();
+}
+
+function renderBonusFilters() {
+  const counts = new Map();
+  for (const s of sets) {
+    const cat = extractBonusCategory(s.bonus);
+    if (!cat) continue;
+    counts.set(cat, (counts.get(cat) || 0) + 1);
+  }
+  const categories = [...counts.keys()].sort((a, b) => a.localeCompare(b));
+
+  const el = document.getElementById("bonusFilters");
+  el.innerHTML = "";
+
+  const allChip = document.createElement("button");
+  allChip.className = "bonus-chip" + (activeBonusCategory === null ? " active" : "");
+  allChip.textContent = "Todos os benefícios";
+  allChip.addEventListener("click", () => {
+    activeBonusCategory = null;
+    renderBonusFilters();
+    render();
+  });
+  el.appendChild(allChip);
+
+  for (const cat of categories) {
+    const chip = document.createElement("button");
+    chip.className = "bonus-chip" + (activeBonusCategory === cat ? " active" : "");
+    chip.innerHTML = `${cat} <span class="count">${counts.get(cat)}</span>`;
+    chip.addEventListener("click", () => {
+      activeBonusCategory = activeBonusCategory === cat ? null : cat;
+      renderBonusFilters();
+      render();
+    });
+    el.appendChild(chip);
+  }
+}
+
+function groupBySet(list) {
+  const map = new Map();
+  for (const it of list) {
+    if (!map.has(it.set)) map.set(it.set, []);
+    map.get(it.set).push(it);
+  }
+  return map;
+}
+
+const PART_ORDER = ["Helm", "Armor", "Pants", "Gloves", "Boots"];
+const STATUS_LABELS = { selecionado: "Selecionado", comprado: "Comprado", pronto: "Pronto" };
+
+function render() {
+  const search = document.getElementById("searchInput").value.trim().toLowerCase();
+  const filter = document.getElementById("statusFilter").value;
+
+  let filtered = items.filter(it => {
+    const key = itemKey(it);
+    const status = getStatus(key);
+    if (filter !== "all" && status !== filter) return false;
+    if (search) {
+      const hay = (it.set + " " + it.parte + " " + (it.excellent || []).join(" ")).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  const grouped = groupBySet(filtered);
+  const setInfo = new Map(sets.map(s => [s.set, s]));
+  const allSetNames = [...new Set(items.map(i => i.set))];
+
+  const catalogEl = document.getElementById("catalog");
+  catalogEl.innerHTML = "";
+
+  let setsComplete = 0;
+
+  for (const setName of allSetNames) {
+    const info0 = setInfo.get(setName);
+    if (activeBonusCategory !== null && extractBonusCategory(info0 && info0.bonus) !== activeBonusCategory) continue;
+
+    const setItems = grouped.get(setName);
+    if (!setItems || setItems.length === 0) continue;
+
+    setItems.sort((a, b) => PART_ORDER.indexOf(a.parte) - PART_ORDER.indexOf(b.parte));
+
+    const totalPartsForSet = items.filter(i => i.set === setName).length;
+    const ownedPartsForSet = items.filter(i => i.set === setName && isOwned(itemKey(i))).length;
+    if (ownedPartsForSet === totalPartsForSet) setsComplete++;
+
+    const info = setInfo.get(setName);
+
+    const allPartsForSet = items.filter(i => i.set === setName);
+    const pricedParts = allPartsForSet.filter(i => i.precoZen != null);
+    const setTotalZen = pricedParts.reduce((sum, i) => sum + i.precoZen, 0);
+    const setTotalLabel = pricedParts.length === 0
+      ? "—"
+      : (pricedParts.length < allPartsForSet.length ? "≈" : "") + formatCompactZen(setTotalZen) + " Zen";
+
+    const groupEl = document.createElement("div");
+    groupEl.className = "set-group";
+
+    const pct = totalPartsForSet ? Math.round((ownedPartsForSet / totalPartsForSet) * 100) : 0;
+    const headerEl = document.createElement("div");
+    headerEl.className = "set-header";
+    headerEl.innerHTML = `
+      <div class="set-title">
+        ${setName}
+        ${info ? `<span class="badge">${info.classe} · ${info.bonus}</span>` : ""}
+        ${ownedPartsForSet === totalPartsForSet ? `<span class="chip">Completo</span>` : ""}
+      </div>
+      <div class="set-progress">
+        <span class="set-total" title="Custo total do set (soma das partes)">Set: <span class="amount">${setTotalLabel}</span></span>
+        ${ownedPartsForSet}/${totalPartsForSet}
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      </div>
+    `;
+    groupEl.appendChild(headerEl);
+
+    const table = document.createElement("table");
+    table.className = "items-table";
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Parte</th>
+          <th>Level</th>
+          <th>Preço</th>
+          <th>Life+</th>
+          <th>Excellent</th>
+          <th>Mercado</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    `;
+    const tbody = table.querySelector("tbody");
+
+    for (const it of setItems) {
+      const key = itemKey(it);
+      const status = getStatus(key);
+      const tr = document.createElement("tr");
+      tr.className = status !== "none" ? `status-${status}` : "";
+      const priceHtml = it.precoZen != null
+        ? `<span class="price">${formatZen(it.precoZen)}</span>`
+        : `<span class="empty-price">—</span>`;
+      const tagsHtml = (it.excellent || []).map(e => `<span class="tag">${e}</span>`).join("");
+      const marketHtml = renderMarketBadge(key);
+      tr.innerHTML = `
+        <td>
+          <div class="status-controls">
+            <button class="status-btn sel ${status === "selecionado" ? "active" : ""}" data-key="${key}" data-status="selecionado" title="Selecionado">S</button>
+            <button class="status-btn comp ${status === "comprado" ? "active" : ""}" data-key="${key}" data-status="comprado" title="Comprado">C</button>
+            <button class="status-btn pronto ${status === "pronto" ? "active" : ""}" data-key="${key}" data-status="pronto" title="Pronto">P</button>
+          </div>
+        </td>
+        <td>${it.parte}</td>
+        <td>${it.level}</td>
+        <td>${priceHtml}</td>
+        <td>${it.addLife}</td>
+        <td><div class="excellent-tags">${tagsHtml}</div></td>
+        <td>${marketHtml}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+    groupEl.appendChild(table);
+    catalogEl.appendChild(groupEl);
+  }
+
+  catalogEl.querySelectorAll(".status-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const key = e.currentTarget.dataset.key;
+      const status = e.currentTarget.dataset.status;
+      setStatus(key, status);
+      render();
+    });
+  });
+
+  const selecionadoItems = items.filter(it => getStatus(itemKey(it)) === "selecionado");
+  const compradoItems = items.filter(it => getStatus(itemKey(it)) === "comprado");
+  const prontoItems = items.filter(it => getStatus(itemKey(it)) === "pronto");
+
+  document.getElementById("statSelecionado").textContent = selecionadoItems.length;
+  document.getElementById("statComprado").textContent = compradoItems.length;
+  document.getElementById("statPronto").textContent = prontoItems.length;
+  document.getElementById("statSetsComplete").textContent = setsComplete;
+
+  const totalSpent = [...compradoItems, ...prontoItems].reduce((sum, it) => sum + (it.precoZen || 0), 0);
+  document.getElementById("statSpent").textContent = formatZen(totalSpent);
+  document.getElementById("purchasedTotal").textContent = formatZen(totalSpent) + " Zen";
+
+  renderSideList("listPronto", "countPronto", prontoItems);
+  renderSideList("listComprado", "countComprado", compradoItems);
+  renderSideList("listSelecionado", "countSelecionado", selecionadoItems);
+}
+
+function renderSideList(listId, countId, list) {
+  const listEl = document.getElementById(listId);
+  document.getElementById(countId).textContent = list.length;
+  listEl.innerHTML = "";
+
+  if (list.length === 0) {
+    listEl.innerHTML = `<div class="empty-state">Nenhum item.</div>`;
+    return;
+  }
+
+  const sorted = [...list].sort((a, b) => a.set.localeCompare(b.set) || PART_ORDER.indexOf(a.parte) - PART_ORDER.indexOf(b.parte));
+
+  for (const it of sorted) {
+    const key = itemKey(it);
+    const row = document.createElement("div");
+    row.className = "side-item";
+    row.innerHTML = `
+      <div class="desc">
+        <span class="name">${it.set} — ${it.parte}</span>
+        <span class="meta">${it.level} · ${it.precoZen != null ? formatZen(it.precoZen) + " Zen" : "sem preço"}</span>
+      </div>
+      <button class="remove-btn" data-key="${key}" title="Remover">×</button>
+    `;
+    listEl.appendChild(row);
+  }
+
+  listEl.querySelectorAll(".remove-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      delete itemStatus[e.currentTarget.dataset.key];
+      saveStatus();
+      render();
+    });
+  });
+}
+
+document.getElementById("searchInput").addEventListener("input", render);
+document.getElementById("statusFilter").addEventListener("change", render);
+document.getElementById("checkMarketBtn").addEventListener("click", checkMarketAvailability);
+document.getElementById("clearAllBtn").addEventListener("click", () => {
+  if (confirm("Remover todos os status (selecionado/comprado/pronto) de todos os itens?")) {
+    itemStatus = {};
+    saveStatus();
+    render();
+  }
+});
+
+loadData();
+</script>
+</body>
+</html>
