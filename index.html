@@ -380,7 +380,7 @@
             <option value="pronto">Só prontos</option>
             <option value="none">Sem status</option>
           </select>
-          <button id="checkMarketBtn" title="Consulta o mercado da MuDream para ver quais itens têm lote anunciado">Checar mercado</button>
+          <button id="checkMarketBtn" title="Consulta o mercado da MuDream apenas para os itens visíveis com os filtros atuais (busca, status e bônus)">Checar mercado</button>
         </div>
       </div>
       <div class="bonus-filters" id="bonusFilters"></div>
@@ -516,19 +516,23 @@ function sleep(ms) {
 
 async function checkMarketAvailability() {
   if (marketChecking) return;
+  const toCheck = getVisibleItems();
+  if (toCheck.length === 0) return;
+
   marketChecking = true;
   const btn = document.getElementById("checkMarketBtn");
   if (btn) { btn.disabled = true; btn.textContent = "Consultando…"; }
 
   // uma consulta por item único (set + parte), em série, com pequeno intervalo
-  // entre chamadas para não sobrecarregar a API pública.
-  for (const it of items) {
+  // entre chamadas para não sobrecarregar a API pública. Consulta apenas os
+  // itens atualmente visíveis (respeitando busca, status e filtro de bônus).
+  for (const it of toCheck) {
     const key = itemKey(it);
     marketStatus[key] = "loading";
   }
   render();
 
-  for (const it of items) {
+  for (const it of toCheck) {
     const key = itemKey(it);
     try {
       const exists = await queryLotExists(it.set, it.parte);
@@ -664,11 +668,12 @@ function groupBySet(list) {
 const PART_ORDER = ["Helm", "Armor", "Pants", "Gloves", "Boots"];
 const STATUS_LABELS = { selecionado: "Selecionado", comprado: "Comprado", pronto: "Pronto" };
 
-function render() {
+function getVisibleItems() {
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
   const filter = document.getElementById("statusFilter").value;
+  const setInfo = new Map(sets.map(s => [s.set, s]));
 
-  let filtered = items.filter(it => {
+  return items.filter(it => {
     const key = itemKey(it);
     const status = getStatus(key);
     if (filter !== "all" && status !== filter) return false;
@@ -676,8 +681,16 @@ function render() {
       const hay = (it.set + " " + it.parte + " " + (it.excellent || []).join(" ")).toLowerCase();
       if (!hay.includes(search)) return false;
     }
+    if (activeBonusCategory !== null) {
+      const info = setInfo.get(it.set);
+      if (extractBonusCategory(info && info.bonus) !== activeBonusCategory) return false;
+    }
     return true;
   });
+}
+
+function render() {
+  const filtered = getVisibleItems();
 
   const grouped = groupBySet(filtered);
   const setInfo = new Map(sets.map(s => [s.set, s]));
