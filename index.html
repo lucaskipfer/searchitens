@@ -385,6 +385,21 @@
             <option value="pronto">Só prontos</option>
             <option value="none">Sem status</option>
           </select>
+          <select id="obtencaoFilter" title="Filtrar por raridade (Obtenção)">
+            <option value="all">Obtenção: todas</option>
+            <option value="0">Obtenção: sem estrela</option>
+            <option value="1">Obtenção: ⭐</option>
+            <option value="3">Obtenção: ⭐⭐⭐</option>
+            <option value="5">Obtenção: ⭐⭐⭐⭐⭐</option>
+          </select>
+          <select id="preparacaoFilter" title="Filtrar por esforço de preparação">
+            <option value="all">Preparação: todas</option>
+            <option value="1">Preparação: ⭐</option>
+            <option value="2">Preparação: ⭐⭐</option>
+            <option value="3">Preparação: ⭐⭐⭐</option>
+            <option value="4">Preparação: ⭐⭐⭐⭐</option>
+            <option value="5">Preparação: ⭐⭐⭐⭐⭐</option>
+          </select>
         </div>
       </div>
       <div class="bonus-filters" id="bonusFilters"></div>
@@ -615,6 +630,8 @@ const STATUS_LABELS = { selecionado: "Selecionado", comprado: "Comprado", pronto
 function getVisibleItems() {
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
   const filter = document.getElementById("statusFilter").value;
+  const obtencaoFilter = document.getElementById("obtencaoFilter").value;
+  const preparacaoFilter = document.getElementById("preparacaoFilter").value;
   const setInfo = new Map(sets.map(s => [s.set, s]));
 
   return items.filter(it => {
@@ -628,6 +645,13 @@ function getVisibleItems() {
     if (activeBonusCategory !== null) {
       const info = setInfo.get(it.set);
       if (extractBonusCategory(info && info.bonus) !== activeBonusCategory) return false;
+    }
+    if (obtencaoFilter !== "all") {
+      const obtencaoCount = (it.excellent || []).filter(e => e !== "Luck").length;
+      if (excellentStars(obtencaoCount) !== Number(obtencaoFilter)) return false;
+    }
+    if (preparacaoFilter !== "all") {
+      if (preparationStars(it.level, it.addLife) !== Number(preparacaoFilter)) return false;
     }
     return true;
   });
@@ -819,6 +843,8 @@ function setupSideSectionToggles() {
 
 document.getElementById("searchInput").addEventListener("input", render);
 document.getElementById("statusFilter").addEventListener("change", render);
+document.getElementById("obtencaoFilter").addEventListener("change", render);
+document.getElementById("preparacaoFilter").addEventListener("change", render);
 setupSideSectionToggles();
 document.getElementById("clearAllBtn").addEventListener("click", () => {
   if (confirm("Remover todos os status (selecionado/comprado/pronto) de todos os itens?")) {
