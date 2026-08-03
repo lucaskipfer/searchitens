@@ -258,14 +258,26 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    cursor: pointer;
+    user-select: none;
   }
+  .side-section-header:hover { filter: brightness(1.15); }
   .side-section-header.sel { color: var(--accent); }
   .side-section-header.comp { color: var(--silver); }
   .side-section-header.pronto { color: var(--green); }
+  .side-section-header.faltante { color: var(--muted); }
+  .toggle-arrow {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 10px;
+    transition: transform 0.15s;
+  }
+  .side-section-header.open .toggle-arrow { transform: rotate(90deg); }
   .side-list {
     max-height: 30vh;
     overflow-y: auto;
   }
+  .side-list.collapsed { display: none; }
   .side-item {
     display: flex;
     align-items: center;
@@ -391,16 +403,32 @@
     </div>
     <div class="catalog-scroll">
       <div class="side-section">
-        <div class="side-section-header pronto">Prontos <span id="countPronto">0</span></div>
-        <div class="side-list" id="listPronto"></div>
+        <div class="side-section-header pronto" data-section="Pronto">
+          <span><span class="toggle-arrow">▸</span> Prontos</span>
+          <span id="countPronto">0</span>
+        </div>
+        <div class="side-list collapsed" id="listPronto"></div>
       </div>
       <div class="side-section">
-        <div class="side-section-header comp">Comprados <span id="countComprado">0</span></div>
-        <div class="side-list" id="listComprado"></div>
+        <div class="side-section-header comp" data-section="Comprado">
+          <span><span class="toggle-arrow">▸</span> Comprados</span>
+          <span id="countComprado">0</span>
+        </div>
+        <div class="side-list collapsed" id="listComprado"></div>
       </div>
       <div class="side-section">
-        <div class="side-section-header sel">Selecionados <span id="countSelecionado">0</span></div>
-        <div class="side-list" id="listSelecionado"></div>
+        <div class="side-section-header sel" data-section="Selecionado">
+          <span><span class="toggle-arrow">▸</span> Selecionados</span>
+          <span id="countSelecionado">0</span>
+        </div>
+        <div class="side-list collapsed" id="listSelecionado"></div>
+      </div>
+      <div class="side-section">
+        <div class="side-section-header faltante" data-section="Faltante">
+          <span><span class="toggle-arrow">▸</span> Faltantes</span>
+          <span id="countFaltante">0</span>
+        </div>
+        <div class="side-list collapsed" id="listFaltante"></div>
       </div>
       <div class="total-row">
         <span>Total gasto (comprados + prontos)</span>
@@ -724,6 +752,7 @@ function render() {
   const selecionadoItems = items.filter(it => getStatus(itemKey(it)) === "selecionado");
   const compradoItems = items.filter(it => getStatus(itemKey(it)) === "comprado");
   const prontoItems = items.filter(it => getStatus(itemKey(it)) === "pronto");
+  const faltanteItems = items.filter(it => getStatus(itemKey(it)) === "none");
 
   document.getElementById("statSelecionado").textContent = selecionadoItems.length;
   document.getElementById("statComprado").textContent = compradoItems.length;
@@ -737,9 +766,10 @@ function render() {
   renderSideList("listPronto", "countPronto", prontoItems);
   renderSideList("listComprado", "countComprado", compradoItems);
   renderSideList("listSelecionado", "countSelecionado", selecionadoItems);
+  renderSideList("listFaltante", "countFaltante", faltanteItems, false);
 }
 
-function renderSideList(listId, countId, list) {
+function renderSideList(listId, countId, list, showRemove = true) {
   const listEl = document.getElementById(listId);
   document.getElementById(countId).textContent = list.length;
   listEl.innerHTML = "";
@@ -760,22 +790,36 @@ function renderSideList(listId, countId, list) {
         <span class="name">${it.set} — ${it.parte}</span>
         <span class="meta">${it.level} · ${it.precoZen != null ? formatZen(it.precoZen) + " Zen" : "sem preço"}</span>
       </div>
-      <button class="remove-btn" data-key="${key}" title="Remover">×</button>
+      ${showRemove ? `<button class="remove-btn" data-key="${key}" title="Remover">×</button>` : ""}
     `;
     listEl.appendChild(row);
   }
 
-  listEl.querySelectorAll(".remove-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      delete itemStatus[e.currentTarget.dataset.key];
-      saveStatus();
-      render();
+  if (showRemove) {
+    listEl.querySelectorAll(".remove-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        delete itemStatus[e.currentTarget.dataset.key];
+        saveStatus();
+        render();
+      });
+    });
+  }
+}
+
+function setupSideSectionToggles() {
+  document.querySelectorAll(".side-section-header[data-section]").forEach(header => {
+    header.addEventListener("click", () => {
+      const listEl = document.getElementById("list" + header.dataset.section);
+      if (!listEl) return;
+      const collapsed = listEl.classList.toggle("collapsed");
+      header.classList.toggle("open", !collapsed);
     });
   });
 }
 
 document.getElementById("searchInput").addEventListener("input", render);
 document.getElementById("statusFilter").addEventListener("change", render);
+setupSideSectionToggles();
 document.getElementById("clearAllBtn").addEventListener("click", () => {
   if (confirm("Remover todos os status (selecionado/comprado/pronto) de todos os itens?")) {
     itemStatus = {};
