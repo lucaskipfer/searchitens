@@ -180,6 +180,12 @@
     height: 100%;
     background: var(--accent-2);
   }
+  .progress-bar-wide {
+    width: auto;
+    height: 8px;
+    margin: 0 16px 14px;
+  }
+  .total-row.progress-row { padding-bottom: 8px; }
   .items-table {
     width: 100%;
     border-collapse: collapse;
@@ -445,6 +451,11 @@
         </div>
         <div class="side-list collapsed" id="listFaltante"></div>
       </div>
+      <div class="total-row progress-row">
+        <span>Progresso geral</span>
+        <span class="value" id="statProgress">0/0 (0%)</span>
+      </div>
+      <div class="progress-bar progress-bar-wide"><div class="progress-fill" id="statProgressFill" style="width:0%"></div></div>
       <div class="total-row">
         <span>Total gasto (comprados + prontos)</span>
         <span class="value" id="purchasedTotal">0 Zen</span>
@@ -545,6 +556,13 @@ async function loadData() {
 }
 
 // ---- Classificação de itens: Obtenção (raridade dos excellents) e Preparação (esforço de level + add life) ----
+
+function obtencaoStars(item) {
+  // se dá pra comprar com Zen no mercado, não é raro de obter — fica sempre 1 estrela
+  if (item.precoZen != null) return 1;
+  const count = (item.excellent || []).filter(e => e !== "Luck").length;
+  return excellentStars(count);
+}
 
 function excellentStars(count) {
   const n = count || 0;
@@ -659,8 +677,7 @@ function getVisibleItems() {
       if (extractBonusCategory(info && info.bonus) !== activeBonusCategory) return false;
     }
     if (obtencaoFilter !== "all") {
-      const obtencaoCount = (it.excellent || []).filter(e => e !== "Luck").length;
-      if (excellentStars(obtencaoCount) !== Number(obtencaoFilter)) return false;
+      if (obtencaoStars(it) !== Number(obtencaoFilter)) return false;
     }
     if (preparacaoFilter !== "all") {
       if (preparationStars(it.level, it.addLife) !== Number(preparacaoFilter)) return false;
@@ -751,8 +768,7 @@ function render() {
         ? `<span class="price">${formatZen(it.precoZen)}</span>`
         : `<span class="empty-price">—</span>`;
       const tagsHtml = (it.excellent || []).map(e => `<span class="tag">${e}</span>`).join("");
-      const obtencaoCount = (it.excellent || []).filter(e => e !== "Luck").length;
-      const obtencaoHtml = renderStars(excellentStars(obtencaoCount));
+      const obtencaoHtml = renderStars(obtencaoStars(it));
       const preparacaoHtml = renderStars(preparationStars(it.level, it.addLife));
       tr.innerHTML = `
         <td>
@@ -798,6 +814,11 @@ function render() {
   const totalSpent = [...compradoItems, ...prontoItems].reduce((sum, it) => sum + (it.precoZen || 0), 0);
   document.getElementById("statSpent").textContent = formatZen(totalSpent);
   document.getElementById("purchasedTotal").textContent = formatZen(totalSpent) + " Zen";
+
+  const ownedCount = items.filter(it => isOwned(itemKey(it))).length;
+  const progressPct = items.length ? Math.round((ownedCount / items.length) * 100) : 0;
+  document.getElementById("statProgress").textContent = `${ownedCount}/${items.length} (${progressPct}%)`;
+  document.getElementById("statProgressFill").style.width = progressPct + "%";
 
   const notOwnedItems = items.filter(it => !isOwned(itemKey(it)));
   const buyableItems = notOwnedItems.filter(it => it.precoZen != null);
