@@ -355,6 +355,37 @@
     font-weight: 600;
   }
   .bonus-chip .count { opacity: 0.7; margin-left: 3px; }
+  .status-chip-group {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .filtered-stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 14px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-card {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 14px;
+    min-width: 100px;
+  }
+  .stat-card .stat-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .stat-card .stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .stat-card .stat-value.gold { color: var(--gold); }
   .set-total {
     font-size: 11px;
     color: var(--muted);
@@ -384,13 +415,12 @@
         <h2>Catálogo de Itens</h2>
         <div class="controls">
           <input type="search" id="searchInput" placeholder="Buscar set ou opção excellent...">
-          <select id="statusFilter">
-            <option value="all">Todos</option>
-            <option value="selecionado">Só selecionados</option>
-            <option value="comprado">Só comprados</option>
-            <option value="pronto">Só prontos</option>
-            <option value="none">Sem status</option>
-          </select>
+          <div class="status-chip-group" id="statusFilterChips">
+            <button type="button" class="bonus-chip status-chip" data-status="selecionado">Selecionado</button>
+            <button type="button" class="bonus-chip status-chip" data-status="comprado">Comprado</button>
+            <button type="button" class="bonus-chip status-chip" data-status="pronto">Pronto</button>
+            <button type="button" class="bonus-chip status-chip" data-status="none">Sem status</button>
+          </div>
           <select id="obtencaoFilter" title="Filtrar por raridade (Obtenção)">
             <option value="all">Obtenção: todas</option>
             <option value="0">Obtenção: sem estrela</option>
@@ -409,6 +439,7 @@
         </div>
       </div>
       <div class="bonus-filters" id="bonusFilters"></div>
+      <div class="filtered-stats" id="filteredStats"></div>
     </div>
     <div class="catalog-scroll">
       <div id="catalog"></div>
@@ -500,6 +531,7 @@ let items = [];
 let sets = [];
 let itemStatus = {};
 let activeBonusCategory = null;
+let activeStatuses = new Set();
 
 function extractBonusCategory(bonus) {
   return (bonus || "").replace(/\s*\+\d+(\.\d+)?%?$/, "").trim();
@@ -675,7 +707,6 @@ const STATUS_LABELS = { selecionado: "Selecionado", comprado: "Comprado", pronto
 
 function getVisibleItems() {
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
-  const filter = document.getElementById("statusFilter").value;
   const obtencaoFilter = document.getElementById("obtencaoFilter").value;
   const preparacaoFilter = document.getElementById("preparacaoFilter").value;
   const setInfo = new Map(sets.map(s => [s.set, s]));
@@ -683,7 +714,7 @@ function getVisibleItems() {
   return items.filter(it => {
     const key = itemKey(it);
     const status = getStatus(key);
-    if (filter !== "all" && status !== filter) return false;
+    if (activeStatuses.size > 0 && !activeStatuses.has(status)) return false;
     if (search) {
       const hay = (it.set + " " + it.parte + " " + (it.excellent || []).join(" ")).toLowerCase();
       if (!hay.includes(search)) return false;
@@ -704,6 +735,7 @@ function getVisibleItems() {
 
 function render() {
   const filtered = getVisibleItems();
+  renderFilteredStats(filtered);
 
   const grouped = groupBySet(filtered);
   const setInfo = new Map(sets.map(s => [s.set, s]));
@@ -911,11 +943,51 @@ function setupSideSectionToggles() {
   });
 }
 
+function setupStatusFilterChips() {
+  document.querySelectorAll(".status-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const status = chip.dataset.status;
+      if (activeStatuses.has(status)) {
+        activeStatuses.delete(status);
+      } else {
+        activeStatuses.add(status);
+      }
+      chip.classList.toggle("active", activeStatuses.has(status));
+      render();
+    });
+  });
+}
+
+function renderFilteredStats(filtered) {
+  const el = document.getElementById("filteredStats");
+  const pricedItems = filtered.filter(it => it.precoZen != null);
+  const totalValue = pricedItems.reduce((sum, it) => sum + it.precoZen, 0);
+  const valueLabel = filtered.length === 0
+    ? "—"
+    : (pricedItems.length < filtered.length ? "≈" : "") + formatZen(totalValue) + " Zen";
+  const affectedSets = new Set(filtered.map(it => it.set)).size;
+
+  el.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Itens filtrados</div>
+      <div class="stat-value">${filtered.length}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Valor (Zen)</div>
+      <div class="stat-value gold">${valueLabel}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Sets afetados</div>
+      <div class="stat-value">${affectedSets}</div>
+    </div>
+  `;
+}
+
 document.getElementById("searchInput").addEventListener("input", render);
-document.getElementById("statusFilter").addEventListener("change", render);
 document.getElementById("obtencaoFilter").addEventListener("change", render);
 document.getElementById("preparacaoFilter").addEventListener("change", render);
 setupSideSectionToggles();
+setupStatusFilterChips();
 document.getElementById("clearAllBtn").addEventListener("click", () => {
   if (confirm("Remover todos os status (selecionado/comprado/pronto) de todos os itens?")) {
     itemStatus = {};
