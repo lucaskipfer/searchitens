@@ -17,6 +17,7 @@
     --danger: #ff6b6b;
     --gold: #e3b341;
     --silver: #b8bfcc;
+    --green: #3ddc84;
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
@@ -58,7 +59,7 @@
   .stats b { color: var(--text); font-size: 13px; }
   .stats .dot-selecionado b { color: var(--accent); }
   .stats .dot-comprado b { color: var(--silver); }
-  .stats .dot-pronto b { color: var(--gold); }
+  .stats .dot-pronto b { color: var(--green); }
   main {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -198,9 +199,12 @@
     border-top: 1px solid var(--border);
     vertical-align: middle;
   }
-  .items-table tr.status-selecionado td { background: rgba(124,156,255,0.08); }
-  .items-table tr.status-comprado td { background: rgba(184,191,204,0.08); }
-  .items-table tr.status-pronto td { background: rgba(227,179,65,0.1); }
+  .items-table tr.status-selecionado td { background: rgba(124,156,255,0.16); }
+  .items-table tr.status-comprado td { background: rgba(184,191,204,0.16); }
+  .items-table tr.status-pronto td { background: rgba(61,220,132,0.16); }
+  .items-table tr.status-selecionado td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+  .items-table tr.status-comprado td:first-child { box-shadow: inset 3px 0 0 var(--silver); }
+  .items-table tr.status-pronto td:first-child { box-shadow: inset 3px 0 0 var(--green); }
   .items-table tr:hover td { filter: brightness(1.15); }
   .status-controls {
     display: flex;
@@ -224,7 +228,7 @@
   .status-btn:hover { opacity: 1; border-color: var(--accent); }
   .status-btn.sel.active { background: rgba(124,156,255,0.25); border-color: var(--accent); color: var(--accent); opacity: 1; }
   .status-btn.comp.active { background: rgba(184,191,204,0.25); border-color: var(--silver); color: var(--silver); opacity: 1; }
-  .status-btn.pronto.active { background: rgba(227,179,65,0.25); border-color: var(--gold); color: var(--gold); opacity: 1; }
+  .status-btn.pronto.active { background: rgba(61,220,132,0.25); border-color: var(--green); color: var(--green); opacity: 1; }
   .excellent-tags {
     display: flex;
     flex-wrap: wrap;
@@ -257,7 +261,7 @@
   }
   .side-section-header.sel { color: var(--accent); }
   .side-section-header.comp { color: var(--silver); }
-  .side-section-header.pronto { color: var(--gold); }
+  .side-section-header.pronto { color: var(--green); }
   .side-list {
     max-height: 30vh;
     overflow-y: auto;
