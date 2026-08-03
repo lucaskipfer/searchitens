@@ -1962,5 +1962,68 @@
                           "Max SD",
                           "Defense Success"
                       ]
+    },
+    {
+        "set":  "Legendary",
+        "parte":  "Helm",
+        "level":  "+3",
+        "precoZen":  4488000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Legendary",
+        "parte":  "Armor",
+        "level":  "+8",
+        "precoZen":  7995000000,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Legendary",
+        "parte":  "Pants",
+        "level":  "+10",
+        "precoZen":  8415000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Legendary",
+        "parte":  "Gloves",
+        "level":  "+2",
+        "precoZen":  2551500000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Legendary",
+        "parte":  "Boots",
+        "level":  "+1",
+        "precoZen":  1836000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
     }
 ]
