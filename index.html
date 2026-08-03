@@ -472,6 +472,22 @@
         <span>Itens só no mercado (sem preço Zen)</span>
         <span class="value" id="statMarketOnlyCount">0</span>
       </div>
+      <div class="total-row">
+        <span title="Preparação 1-2⭐: mais barato caçar pronto no mercado do que comprar por Zen e preparar">Comprar no mercado (Prep 1-2⭐)</span>
+        <span class="value" id="statMarketRecoCount">0</span>
+      </div>
+      <div class="total-row">
+        <span title="Soma do preço Zen desses itens — é o quanto você deixa de gastar se conseguir eles no mercado em vez de pela loja de Zen">Zen que você economiza</span>
+        <span class="value" id="statMarketRecoValue">0 Zen</span>
+      </div>
+      <div class="total-row">
+        <span title="Preparação 3-5⭐: mais barato comprar por Zen e preparar você mesmo do que caçar pronto no mercado">Comprar por Zen (Prep 3-5⭐)</span>
+        <span class="value" id="statZenRecoCount">0</span>
+      </div>
+      <div class="total-row">
+        <span>Zen a gastar nesses</span>
+        <span class="value" id="statZenRecoValue">0 Zen</span>
+      </div>
     </div>
   </aside>
 </main>
@@ -828,6 +844,18 @@ function render() {
   document.getElementById("statBuyableCount").textContent = buyableItems.length;
   document.getElementById("statBuyableValue").textContent = formatZen(buyableValue) + " Zen";
   document.getElementById("statMarketOnlyCount").textContent = marketOnlyItems.length;
+
+  // dos itens que têm preço em Zen, separa quem vale mais a pena caçar pronto no
+  // mercado (baixo esforço de preparação) de quem vale mais a pena comprar por Zen
+  const marketRecoItems = buyableItems.filter(it => preparationStars(it.level, it.addLife) <= 2);
+  const zenRecoItems = buyableItems.filter(it => preparationStars(it.level, it.addLife) >= 3);
+  const marketRecoValue = marketRecoItems.reduce((sum, it) => sum + it.precoZen, 0);
+  const zenRecoValue = zenRecoItems.reduce((sum, it) => sum + it.precoZen, 0);
+
+  document.getElementById("statMarketRecoCount").textContent = marketRecoItems.length;
+  document.getElementById("statMarketRecoValue").textContent = formatZen(marketRecoValue) + " Zen";
+  document.getElementById("statZenRecoCount").textContent = zenRecoItems.length;
+  document.getElementById("statZenRecoValue").textContent = formatZen(zenRecoValue) + " Zen";
 
   renderSideList("listPronto", "countPronto", prontoItems);
   renderSideList("listComprado", "countComprado", compradoItems);

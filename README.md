@@ -29,4 +29,6 @@ Este repositório está publicado via GitHub Pages, servindo os arquivos estáti
 Cada item mostra duas notas em estrelas (⭐), independentes entre si:
 
 - **Obtenção** — raridade do item. Se o item tem preço em Zen (dá pra comprar no mercado), é sempre ⭐ (não é raro). Caso contrário, é baseada na quantidade de opções excellent (excluindo "Luck", que não conta para essa nota): 1 opção = ⭐, 2 = ⭐⭐⭐, 3 ou mais = ⭐⭐⭐⭐⭐.
-- **Preparação** — esforço para finalizar o item já obtido, baseado em Level (+0~+9 = 1pt, +10 = 2pt, +11 = 3pt) e Add Life (+0~+2 = 0pt, +3 = 2pt, +4 = 4pt, +5 = 6pt, +6 = 8pt, +7 = 10pt), convertido em estrelas: 1–3pt = ⭐, 4–6pt = ⭐⭐, 7–8pt = ⭐⭐⭐, 9–11pt = ⭐⭐⭐⭐, 12–13pt = ⭐⭐⭐⭐⭐.
+- **Preparação** — esforço para finalizar o item já obtido, baseado em Level (+0~+9 = 1pt, +10 = 2pt, +11 = 3pt) e Add Life (+0~+2 = 0pt, +3 = 2pt, +4 = 4pt, +5 = 6pt, +6 = 8pt, +7 = 10pt), convertido em estrelas: 1–3pt = ⭐, 4–6pt = ⭐⭐, 7–8pt = ⭐⭐⭐, 9–11pt = ⭐⭐⭐⭐, 12–13pt = ⭐⭐⭐⭐⭐ (level +11 sempre garante no mínimo ⭐⭐⭐).
+
+O painel "Meus Itens" usa a Preparação para sugerir onde comprar cada item que ainda tem preço em Zen: **1-2⭐ → mercado** (mais barato caçar pronto do que gastar Zen preparando), **3-5⭐ → Zen** (mais barato comprar por Zen e preparar você mesmo). A métrica "Zen que você economiza" soma o preço Zen dos itens recomendados para o mercado.
