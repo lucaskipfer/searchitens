@@ -1780,5 +1780,187 @@
                           "Luck",
                           "Max Life"
                       ]
+    },
+    {
+        "set":  "Guardian",
+        "parte":  "Helm",
+        "level":  "+6",
+        "precoZen":  6171000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Guardian",
+        "parte":  "Armor",
+        "level":  "+5",
+        "precoZen":  3645000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Guardian",
+        "parte":  "Pants",
+        "level":  "+10",
+        "precoZen":  6457500000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Guardian",
+        "parte":  "Gloves",
+        "level":  "+5",
+        "precoZen":  3240000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Guardian",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  5412000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Crow",
+        "parte":  "Armor",
+        "level":  "+11",
+        "precoZen":  8856000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Storm Crow",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  8856000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Storm Crow",
+        "parte":  "Gloves",
+        "level":  "+9",
+        "precoZen":  7749000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Storm Crow",
+        "parte":  "Boots",
+        "level":  "+0",
+        "precoZen":  1275000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Ancient",
+        "parte":  "Helm",
+        "level":  "+9",
+        "precoZen":  7854000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Ancient",
+        "parte":  "Armor",
+        "level":  "+4",
+        "precoZen":  3321000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Ancient",
+        "parte":  "Pants",
+        "level":  "+6",
+        "precoZen":  4059000000,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Ancient",
+        "parte":  "Gloves",
+        "level":  "+9",
+        "precoZen":  6027000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Ancient",
+        "parte":  "Boots",
+        "level":  "+8",
+        "precoZen":  7956000000,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
     }
 ]

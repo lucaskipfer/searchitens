@@ -102,6 +102,24 @@
         "valorTotalBZen":  "18.8145"
     },
     {
+        "set":  "Guardian",
+        "classe":  "Elf",
+        "bonus":  "Attack Speed +25",
+        "valorTotalBZen":  "24.9255"
+    },
+    {
+        "set":  "Storm Crow",
+        "classe":  "MG",
+        "bonus":  "Excellent Damage Rate +4%",
+        "valorTotalBZen":  "26.736"
+    },
+    {
+        "set":  "Ancient",
+        "classe":  "Summoner",
+        "bonus":  "Damage Decrease +2%",
+        "valorTotalBZen":  "29.217"
+    },
+    {
         "set":  "Grand Soul",
         "classe":  "MG",
         "bonus":  "Max Defense +5%",
