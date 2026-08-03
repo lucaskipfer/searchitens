@@ -518,11 +518,18 @@ function addLifePoints(addLife) {
 
 function preparationStars(level, addLife) {
   const points = levelPoints(level) + addLifePoints(addLife);
-  if (points <= 3) return 1;
-  if (points <= 6) return 2;
-  if (points <= 8) return 3;
-  if (points <= 11) return 4;
-  return 5;
+  let stars;
+  if (points <= 3) stars = 1;
+  else if (points <= 6) stars = 2;
+  else if (points <= 8) stars = 3;
+  else if (points <= 11) stars = 4;
+  else stars = 5;
+
+  // um item +11 já exige bastante esforço de refino, mesmo sem Add Life
+  const levelNum = parseInt(String(level).replace("+", ""), 10) || 0;
+  if (levelNum >= 11) stars = Math.max(stars, 3);
+
+  return stars;
 }
 
 function renderStars(n) {
