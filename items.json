@@ -1716,5 +1716,69 @@
                           "Max SD",
                           "Damage Decrease"
                       ]
+    },
+    {
+        "set":  "Dragon",
+        "parte":  "Helm",
+        "level":  "+0",
+        "precoZen":  1012500000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dragon",
+        "parte":  "Armor",
+        "level":  "+4",
+        "precoZen":  6642000000,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dragon",
+        "parte":  "Pants",
+        "level":  "+1",
+        "precoZen":  2583000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Reflect",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dragon",
+        "parte":  "Gloves",
+        "level":  "+8",
+        "precoZen":  3685500000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Dragon",
+        "parte":  "Boots",
+        "level":  "+7",
+        "precoZen":  3402000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
     }
 ]

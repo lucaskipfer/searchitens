@@ -78,6 +78,12 @@
         "valorTotalBZen":  "16.065"
     },
     {
+        "set":  "Dragon",
+        "classe":  "DK / MG",
+        "bonus":  "Max Life +1500",
+        "valorTotalBZen":  "17.325"
+    },
+    {
         "set":  "Wind",
         "classe":  "Elf",
         "bonus":  "Max Defense +2%",
