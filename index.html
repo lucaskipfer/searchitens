@@ -449,6 +449,18 @@
         <span>Total gasto (comprados + prontos)</span>
         <span class="value" id="purchasedTotal">0 Zen</span>
       </div>
+      <div class="total-row">
+        <span>Itens faltantes compráveis por Zen</span>
+        <span class="value" id="statBuyableCount">0</span>
+      </div>
+      <div class="total-row">
+        <span>Valor faltante (Zen)</span>
+        <span class="value" id="statBuyableValue">0 Zen</span>
+      </div>
+      <div class="total-row">
+        <span>Itens só no mercado (sem preço Zen)</span>
+        <span class="value" id="statMarketOnlyCount">0</span>
+      </div>
     </div>
   </aside>
 </main>
@@ -786,6 +798,15 @@ function render() {
   const totalSpent = [...compradoItems, ...prontoItems].reduce((sum, it) => sum + (it.precoZen || 0), 0);
   document.getElementById("statSpent").textContent = formatZen(totalSpent);
   document.getElementById("purchasedTotal").textContent = formatZen(totalSpent) + " Zen";
+
+  const notOwnedItems = items.filter(it => !isOwned(itemKey(it)));
+  const buyableItems = notOwnedItems.filter(it => it.precoZen != null);
+  const marketOnlyItems = notOwnedItems.filter(it => it.precoZen == null);
+  const buyableValue = buyableItems.reduce((sum, it) => sum + it.precoZen, 0);
+
+  document.getElementById("statBuyableCount").textContent = buyableItems.length;
+  document.getElementById("statBuyableValue").textContent = formatZen(buyableValue) + " Zen";
+  document.getElementById("statMarketOnlyCount").textContent = marketOnlyItems.length;
 
   renderSideList("listPronto", "countPronto", prontoItems);
   renderSideList("listComprado", "countComprado", compradoItems);
