@@ -680,7 +680,8 @@ function render() {
         ? `<span class="price">${formatZen(it.precoZen)}</span>`
         : `<span class="empty-price">—</span>`;
       const tagsHtml = (it.excellent || []).map(e => `<span class="tag">${e}</span>`).join("");
-      const obtencaoHtml = renderStars(excellentStars((it.excellent || []).length));
+      const obtencaoCount = (it.excellent || []).filter(e => e !== "Luck").length;
+      const obtencaoHtml = renderStars(excellentStars(obtencaoCount));
       const preparacaoHtml = renderStars(preparationStars(it.level, it.addLife));
       tr.innerHTML = `
         <td>
