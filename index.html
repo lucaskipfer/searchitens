@@ -343,19 +343,8 @@
     white-space: nowrap;
   }
   .set-total .amount { color: var(--gold); opacity: 0.9; }
-  .market-badge {
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 10px;
-    white-space: nowrap;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    background: var(--panel-2);
-    cursor: default;
-  }
-  .market-badge.yes { color: var(--accent-2); border-color: var(--accent-2); background: rgba(75,211,160,0.12); }
-  .market-badge.no { color: var(--danger); border-color: var(--danger); background: rgba(255,107,107,0.1); }
-  .market-badge.loading { opacity: 0.6; font-style: italic; }
+  .stars { white-space: nowrap; letter-spacing: 1px; }
+  .stars.empty { color: var(--muted); letter-spacing: normal; font-style: italic; }
 </style>
 </head>
 <body>
@@ -384,8 +373,6 @@
             <option value="pronto">Só prontos</option>
             <option value="none">Sem status</option>
           </select>
-          <button id="checkMarketBtn" title="Consulta o mercado da MuDream apenas para os itens visíveis com os filtros atuais (busca, status e bônus)">Checar mercado</button>
-          <span class="market-badge" id="marketScriptStatus" title="O site da MuDream bloqueia essa consulta vinda de outra página; é necessário o userscript Tampermonkey para funcionar">Verificando userscript…</span>
         </div>
       </div>
       <div class="bonus-filters" id="bonusFilters"></div>
@@ -431,162 +418,6 @@ let items = [];
 let sets = [];
 let itemStatus = {};
 let activeBonusCategory = null;
-
-// ---- Verificação de disponibilidade no mercado (MuDream API) ----
-const MARKET_CACHE_KEY = "mudream_market_availability_v2";
-const MARKET_ENDPOINT = "https://mudream.online/api/graphql";
-const MARKET_QUERY = `
-  query GET_ALL_LOTS(
-    $offset: NonNegativeInt,
-    $limit: NonNegativeInt,
-    $sort: LotsSortInput,
-    $filter: LotsFilterInput
-  ) {
-    lots(
-      limit: $limit,
-      offset: $offset,
-      sort: $sort,
-      filter: $filter
-    ) {
-      Lots {
-        id
-      }
-      Pagination {
-        total
-      }
-    }
-  }
-`;
-
-// marketStatus[key] = "loading" | "yes" | "no" | undefined (não verificado)
-let marketStatus = {};
-let marketChecking = false;
-
-function loadMarketCache() {
-  try {
-    const raw = localStorage.getItem(MARKET_CACHE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      // só reaproveita resultados recentes (24h) para não ficar desatualizado
-      if (parsed.savedAt && Date.now() - parsed.savedAt < 24 * 60 * 60 * 1000) {
-        marketStatus = parsed.data || {};
-      }
-    }
-  } catch (e) {
-    marketStatus = {};
-  }
-}
-
-function saveMarketCache() {
-  localStorage.setItem(MARKET_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), data: marketStatus }));
-}
-
-function renderMarketBadge(key) {
-  const status = marketStatus[key];
-  if (status === "loading") return `<span class="market-badge loading">verificando…</span>`;
-  if (status === "yes") return `<span class="market-badge yes">No mercado</span>`;
-  if (status === "no") return `<span class="market-badge no">Não encontrado</span>`;
-  return `<span class="market-badge">—</span>`;
-}
-
-function isMarketCheckerScriptReady() {
-  return typeof window.__gmMarketCheck === "function";
-}
-
-async function queryLotExists(setName, parte) {
-  // O mercado da MuDream bloqueia chamadas via CORS a partir de outros domínios.
-  // O userscript Tampermonkey injeta __gmMarketCheck usando GM_xmlhttpRequest,
-  // que roda com a sessão logada do navegador e ignora essa trava.
-  if (isMarketCheckerScriptReady()) {
-    return window.__gmMarketCheck(setName, parte);
-  }
-
-  const body = {
-    operationName: "GET_ALL_LOTS",
-    query: MARKET_QUERY,
-    variables: {
-      filter: {
-        name: setName.toLowerCase(),
-        type: [parte.toLowerCase()]
-      },
-      limit: 1,
-      offset: 0
-    }
-  };
-  const res = await fetch(MARKET_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  });
-  if (!res.ok) throw new Error("HTTP " + res.status);
-  const data = await res.json();
-  const total = data && data.data && data.data.lots && data.data.lots.Pagination
-    ? data.data.lots.Pagination.total
-    : (data && data.data && data.data.lots && data.data.lots.Lots ? data.data.lots.Lots.length : 0);
-  return (total || 0) > 0;
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function checkMarketAvailability() {
-  if (marketChecking) return;
-
-  if (!isMarketCheckerScriptReady()) {
-    alert(
-      "Checar mercado precisa do userscript da MuDream Collections instalado no navegador " +
-      "(Tampermonkey), pois o site da MuDream bloqueia essa consulta vinda de outra página.\n\n" +
-      "Instale o Tampermonkey e o userscript \"market-checker.user.js\" (veja o README do repositório) " +
-      "e recarregue esta página."
-    );
-    return;
-  }
-
-  const toCheck = getVisibleItems();
-  if (toCheck.length === 0) return;
-
-  marketChecking = true;
-  const btn = document.getElementById("checkMarketBtn");
-  if (btn) { btn.disabled = true; btn.textContent = "Consultando…"; }
-
-  // uma consulta por item único (set + parte), em série, com pequeno intervalo
-  // entre chamadas para não sobrecarregar a API pública. Consulta apenas os
-  // itens atualmente visíveis (respeitando busca, status e filtro de bônus).
-  for (const it of toCheck) {
-    const key = itemKey(it);
-    marketStatus[key] = "loading";
-  }
-  render();
-
-  let firstError = null;
-  let failCount = 0;
-  for (const it of toCheck) {
-    const key = itemKey(it);
-    try {
-      const exists = await queryLotExists(it.set, it.parte);
-      marketStatus[key] = exists ? "yes" : "no";
-    } catch (e) {
-      marketStatus[key] = undefined;
-      failCount++;
-      if (!firstError) firstError = e;
-      console.warn("Falha ao consultar mercado para", it.set, it.parte, e);
-    }
-    saveMarketCache();
-    render();
-    await sleep(250);
-  }
-
-  marketChecking = false;
-  if (btn) { btn.disabled = false; btn.textContent = "Checar mercado"; }
-
-  if (firstError) {
-    alert(
-      "Falha ao consultar o mercado em " + failCount + " de " + toCheck.length + " item(ns).\n\n" +
-      "Erro: " + (firstError && firstError.message ? firstError.message : String(firstError))
-    );
-  }
-}
 
 function extractBonusCategory(bonus) {
   return (bonus || "").replace(/\s*\+\d+(\.\d+)?%?$/, "").trim();
@@ -648,7 +479,6 @@ function formatCompactZen(n) {
 
 async function loadData() {
   loadStatus();
-  loadMarketCache();
   const [itemsRes, setsRes] = await Promise.all([
     fetch("items.json"),
     fetch("sets.json")
@@ -657,30 +487,47 @@ async function loadData() {
   sets = await setsRes.json();
   renderBonusFilters();
   render();
-  watchMarketCheckerScript();
 }
 
-function watchMarketCheckerScript() {
-  const el = document.getElementById("marketScriptStatus");
-  if (!el) return;
+// ---- Classificação de itens: Obtenção (raridade dos excellents) e Preparação (esforço de level + add life) ----
 
-  let attempts = 0;
-  let timer = null;
-  const check = () => {
-    attempts++;
-    if (isMarketCheckerScriptReady()) {
-      el.textContent = "Userscript ativo";
-      el.className = "market-badge yes";
-      if (timer) clearInterval(timer);
-    } else if (attempts >= 6) {
-      // userscript demora um pouco pra injetar em alguns navegadores; depois de ~3s, assume ausente
-      el.textContent = "Userscript não instalado";
-      el.className = "market-badge no";
-      if (timer) clearInterval(timer);
-    }
-  };
-  check();
-  timer = setInterval(check, 500);
+function excellentStars(count) {
+  const n = count || 0;
+  if (n <= 0) return 0;
+  if (n === 1) return 1;
+  if (n === 2) return 3;
+  return 5; // 3 ou mais opções
+}
+
+function levelPoints(level) {
+  const n = parseInt(String(level).replace("+", ""), 10) || 0;
+  if (n >= 11) return 3;
+  if (n === 10) return 2;
+  return 1;
+}
+
+function addLifePoints(addLife) {
+  const n = addLife || 0;
+  if (n <= 2) return 0;
+  if (n === 3) return 2;
+  if (n === 4) return 4;
+  if (n === 5) return 6;
+  if (n === 6) return 8;
+  return 10; // 7+
+}
+
+function preparationStars(level, addLife) {
+  const points = levelPoints(level) + addLifePoints(addLife);
+  if (points <= 3) return 1;
+  if (points <= 6) return 2;
+  if (points <= 8) return 3;
+  if (points <= 11) return 4;
+  return 5;
+}
+
+function renderStars(n) {
+  if (!n) return `<span class="stars empty">—</span>`;
+  return `<span class="stars" title="${n}/5">${"⭐".repeat(n)}</span>`;
 }
 
 function renderBonusFilters() {
@@ -816,7 +663,8 @@ function render() {
           <th>Preço</th>
           <th>Life+</th>
           <th>Excellent</th>
-          <th>Mercado</th>
+          <th title="Raridade do item, baseada só nas opções excellent (não podem ser adicionadas depois)">Obtenção</th>
+          <th title="Esforço para finalizar o item, baseado em Level + Add Life">Preparação</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -832,7 +680,8 @@ function render() {
         ? `<span class="price">${formatZen(it.precoZen)}</span>`
         : `<span class="empty-price">—</span>`;
       const tagsHtml = (it.excellent || []).map(e => `<span class="tag">${e}</span>`).join("");
-      const marketHtml = renderMarketBadge(key);
+      const obtencaoHtml = renderStars(excellentStars((it.excellent || []).length));
+      const preparacaoHtml = renderStars(preparationStars(it.level, it.addLife));
       tr.innerHTML = `
         <td>
           <div class="status-controls">
@@ -846,7 +695,8 @@ function render() {
         <td>${priceHtml}</td>
         <td>${it.addLife}</td>
         <td><div class="excellent-tags">${tagsHtml}</div></td>
-        <td>${marketHtml}</td>
+        <td>${obtencaoHtml}</td>
+        <td>${preparacaoHtml}</td>
       `;
       tbody.appendChild(tr);
     }
@@ -918,7 +768,6 @@ function renderSideList(listId, countId, list) {
 
 document.getElementById("searchInput").addEventListener("input", render);
 document.getElementById("statusFilter").addEventListener("change", render);
-document.getElementById("checkMarketBtn").addEventListener("click", checkMarketAvailability);
 document.getElementById("clearAllBtn").addEventListener("click", () => {
   if (confirm("Remover todos os status (selecionado/comprado/pronto) de todos os itens?")) {
     itemStatus = {};
