@@ -1659,5 +1659,62 @@
                           "Reflect",
                           "Defense Success"
                       ]
+    },
+    {
+        "set":  "Red Winged",
+        "parte":  "Helm",
+        "level":  "+8",
+        "precoZen":  2457000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Red Winged",
+        "parte":  "Armor",
+        "level":  "+0",
+        "precoZen":  675000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Red Winged",
+        "parte":  "Pants",
+        "level":  "+5",
+        "precoZen":  2160000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Red Winged",
+        "parte":  "Gloves",
+        "level":  "+3",
+        "precoZen":  1080000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Red Winged",
+        "parte":  "Boots",
+        "level":  "+4",
+        "precoZen":  2142000000,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
     }
 ]
