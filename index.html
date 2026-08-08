@@ -235,6 +235,19 @@
   .status-btn.sel.active { background: rgba(124,156,255,0.25); border-color: var(--accent); color: var(--accent); opacity: 1; }
   .status-btn.comp.active { background: rgba(184,191,204,0.25); border-color: var(--silver); color: var(--silver); opacity: 1; }
   .status-btn.pronto.active { background: rgba(61,220,132,0.25); border-color: var(--green); color: var(--green); opacity: 1; }
+  .market-price-btn {
+    display: block;
+    margin-top: 4px;
+    padding: 2px 6px;
+    font-size: 10px;
+    background: rgba(124,156,255,0.12);
+    border: 1px dashed var(--accent);
+    border-radius: 5px;
+    color: var(--accent);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .market-price-btn:hover { background: rgba(124,156,255,0.25); }
   .excellent-tags {
     display: flex;
     flex-wrap: wrap;
@@ -400,7 +413,7 @@
 <header>
   <h1>MuDream <span>Collections</span> — Meus Itens</h1>
   <div class="stats">
-    <div class="dot-selecionado">Selecionados: <b id="statSelecionado">0</b></div>
+    <div class="dot-selecionado">No Mercado: <b id="statSelecionado">0</b></div>
     <div class="dot-comprado">Comprados: <b id="statComprado">0</b></div>
     <div class="dot-pronto">Prontos: <b id="statPronto">0</b></div>
     <div>Total gasto: <b id="statSpent">0</b> Zen</div>
@@ -416,7 +429,7 @@
         <div class="controls">
           <input type="search" id="searchInput" placeholder="Buscar set ou opção excellent...">
           <div class="status-chip-group" id="statusFilterChips">
-            <button type="button" class="bonus-chip status-chip" data-status="selecionado">Selecionado</button>
+            <button type="button" class="bonus-chip status-chip" data-status="selecionado">No Mercado</button>
             <button type="button" class="bonus-chip status-chip" data-status="comprado">Comprado</button>
             <button type="button" class="bonus-chip status-chip" data-status="pronto">Pronto</button>
             <button type="button" class="bonus-chip status-chip" data-status="none">Sem status</button>
@@ -470,7 +483,7 @@
       </div>
       <div class="side-section">
         <div class="side-section-header sel" data-section="Selecionado">
-          <span><span class="toggle-arrow">▸</span> Selecionados</span>
+          <span><span class="toggle-arrow">▸</span> No Mercado</span>
           <span id="countSelecionado">0</span>
         </div>
         <div class="side-list collapsed" id="listSelecionado"></div>
@@ -526,10 +539,12 @@
 <script>
 const STORAGE_KEY = "mudream_item_status_v2";
 const LEGACY_KEY = "mudream_purchased_items_v1";
+const MARKET_PRICE_KEY = "mudream_market_prices_v1";
 
 let items = [];
 let sets = [];
 let itemStatus = {};
+let marketPrices = {};
 let activeBonusCategory = null;
 let activeStatuses = new Set();
 
@@ -555,6 +570,47 @@ function loadStatus() {
 
 function saveStatus() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(itemStatus));
+}
+
+function loadMarketPrices() {
+  const raw = localStorage.getItem(MARKET_PRICE_KEY);
+  if (!raw) return;
+  try {
+    marketPrices = JSON.parse(raw);
+  } catch (e) {
+    marketPrices = {};
+  }
+}
+
+function saveMarketPrices() {
+  localStorage.setItem(MARKET_PRICE_KEY, JSON.stringify(marketPrices));
+}
+
+function formatMarketPrice(price) {
+  if (!price) return "";
+  return `${price.value.toLocaleString("pt-BR")} ${price.currency}`;
+}
+
+function promptMarketPrice(key) {
+  const existing = marketPrices[key];
+  const input = prompt(
+    "Preço encontrado no mercado (ALL = joia de qualquer tipo — bless, soul, chaos, life, creation; DC = Dream Coins).\nEx: 50 ALL ou 20 DC",
+    existing ? formatMarketPrice(existing) : ""
+  );
+  if (input === null) return;
+  const trimmed = input.trim();
+  if (trimmed === "") {
+    delete marketPrices[key];
+    saveMarketPrices();
+    return;
+  }
+  const match = trimmed.match(/^(\d+(?:[.,]\d+)?)\s*(ALL|DC)$/i);
+  if (!match) {
+    alert('Formato inválido. Use um número seguido de "ALL" ou "DC", ex: 50 ALL');
+    return;
+  }
+  marketPrices[key] = { value: parseFloat(match[1].replace(",", ".")), currency: match[2].toUpperCase() };
+  saveMarketPrices();
 }
 
 function itemKey(it) {
@@ -593,6 +649,7 @@ function formatCompactZen(n) {
 
 async function loadData() {
   loadStatus();
+  loadMarketPrices();
   const [itemsRes, setsRes] = await Promise.all([
     fetch("items.json"),
     fetch("sets.json")
@@ -703,7 +760,19 @@ function groupBySet(list) {
 }
 
 const PART_ORDER = ["Helm", "Armor", "Pants", "Gloves", "Boots"];
-const STATUS_LABELS = { selecionado: "Selecionado", comprado: "Comprado", pronto: "Pronto" };
+const STATUS_LABELS = { selecionado: "No Mercado", comprado: "Comprado", pronto: "Pronto" };
+const EXCELLENT_ABBR = {
+  "Damage Decrease": "DD",
+  "Reflect": "REF",
+  "Defense Success": "DSR",
+  "Max Life": "MH",
+  "Max SD": "SD",
+  "Zen Drop": "ZEN"
+};
+
+function abbreviateExcellent(name) {
+  return EXCELLENT_ABBR[name] || name;
+}
 
 function getVisibleItems() {
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
@@ -815,16 +884,21 @@ function render() {
       const priceHtml = it.precoZen != null
         ? `<span class="price">${formatZen(it.precoZen)}</span>`
         : `<span class="empty-price">—</span>`;
-      const tagsHtml = (it.excellent || []).map(e => `<span class="tag">${e}</span>`).join("");
+      const tagsHtml = (it.excellent || []).map(e => `<span class="tag" title="${e}">${abbreviateExcellent(e)}</span>`).join("");
       const obtencaoHtml = renderStars(obtencaoStars(it));
       const preparacaoHtml = renderStars(preparationStars(it.level, it.addLife));
+      const marketPrice = marketPrices[key];
+      const marketPriceHtml = status === "selecionado"
+        ? `<button class="market-price-btn" data-key="${key}" title="Clique para editar o preço no mercado">${marketPrice ? formatMarketPrice(marketPrice) : "definir preço"}</button>`
+        : "";
       tr.innerHTML = `
         <td>
           <div class="status-controls">
-            <button class="status-btn sel ${status === "selecionado" ? "active" : ""}" data-key="${key}" data-status="selecionado" title="Selecionado">S</button>
+            <button class="status-btn sel ${status === "selecionado" ? "active" : ""}" data-key="${key}" data-status="selecionado" title="No Mercado">M</button>
             <button class="status-btn comp ${status === "comprado" ? "active" : ""}" data-key="${key}" data-status="comprado" title="Comprado">C</button>
             <button class="status-btn pronto ${status === "pronto" ? "active" : ""}" data-key="${key}" data-status="pronto" title="Pronto">P</button>
           </div>
+          ${marketPriceHtml}
         </td>
         <td>${it.parte}</td>
         <td>${it.level}</td>
@@ -844,7 +918,18 @@ function render() {
     btn.addEventListener("click", (e) => {
       const key = e.currentTarget.dataset.key;
       const status = e.currentTarget.dataset.status;
+      const turningOn = getStatus(key) !== status;
       setStatus(key, status);
+      if (status === "selecionado" && turningOn) {
+        promptMarketPrice(key);
+      }
+      render();
+    });
+  });
+
+  catalogEl.querySelectorAll(".market-price-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      promptMarketPrice(e.currentTarget.dataset.key);
       render();
     });
   });
@@ -909,12 +994,14 @@ function renderSideList(listId, countId, list, showRemove = true) {
 
   for (const it of sorted) {
     const key = itemKey(it);
+    const marketPrice = marketPrices[key];
+    const marketPriceMeta = marketPrice ? ` · ${formatMarketPrice(marketPrice)}` : "";
     const row = document.createElement("div");
     row.className = "side-item";
     row.innerHTML = `
       <div class="desc">
         <span class="name">${it.set} — ${it.parte}</span>
-        <span class="meta">${it.level} · ${it.precoZen != null ? formatZen(it.precoZen) + " Zen" : "sem preço"}</span>
+        <span class="meta">${it.level} · ${it.precoZen != null ? formatZen(it.precoZen) + " Zen" : "sem preço"}${marketPriceMeta}</span>
       </div>
       ${showRemove ? `<button class="remove-btn" data-key="${key}" title="Remover">×</button>` : ""}
     `;
@@ -989,7 +1076,7 @@ document.getElementById("preparacaoFilter").addEventListener("change", render);
 setupSideSectionToggles();
 setupStatusFilterChips();
 document.getElementById("clearAllBtn").addEventListener("click", () => {
-  if (confirm("Remover todos os status (selecionado/comprado/pronto) de todos os itens?")) {
+  if (confirm("Remover todos os status (no mercado/comprado/pronto) de todos os itens?")) {
     itemStatus = {};
     saveStatus();
     render();
