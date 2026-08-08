@@ -157,6 +157,14 @@
     align-items: center;
     gap: 8px;
   }
+  .set-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: var(--bg);
+    flex-shrink: 0;
+  }
   .set-title .badge {
     font-size: 11px;
     color: var(--muted);
@@ -261,6 +269,12 @@
     color: var(--muted);
     border: 1px solid var(--border);
     white-space: nowrap;
+  }
+  .tag.tag-luck {
+    background: rgba(124,156,255,0.22);
+    color: var(--accent);
+    border-color: var(--accent);
+    font-weight: 700;
   }
   .price { color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .empty-price { color: var(--muted); font-style: italic; }
@@ -774,6 +788,10 @@ function abbreviateExcellent(name) {
   return EXCELLENT_ABBR[name] || name;
 }
 
+function setImageSlug(setName) {
+  return setName.toLowerCase().replace(/\s+/g, "-");
+}
+
 function getVisibleItems() {
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
   const obtencaoFilter = document.getElementById("obtencaoFilter").value;
@@ -845,6 +863,7 @@ function render() {
     headerEl.className = "set-header";
     headerEl.innerHTML = `
       <div class="set-title">
+        <img class="set-icon" src="images/sets/${setImageSlug(setName)}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
         ${setName}
         ${info ? `<span class="badge">${info.classe} · ${info.bonus}</span>` : ""}
         ${ownedPartsForSet === totalPartsForSet ? `<span class="chip">Completo</span>` : ""}
@@ -884,7 +903,7 @@ function render() {
       const priceHtml = it.precoZen != null
         ? `<span class="price">${formatZen(it.precoZen)}</span>`
         : `<span class="empty-price">—</span>`;
-      const tagsHtml = (it.excellent || []).map(e => `<span class="tag" title="${e}">${abbreviateExcellent(e)}</span>`).join("");
+      const tagsHtml = (it.excellent || []).map(e => `<span class="tag${e === "Luck" ? " tag-luck" : ""}" title="${e}">${abbreviateExcellent(e)}</span>`).join("");
       const obtencaoHtml = renderStars(obtencaoStars(it));
       const preparacaoHtml = renderStars(preparationStars(it.level, it.addLife));
       const marketPrice = marketPrices[key];
