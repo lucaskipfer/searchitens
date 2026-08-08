@@ -1083,6 +1083,28 @@ function renderFilteredStats(filtered) {
     : (pricedItems.length < filtered.length ? "≈" : "") + formatZen(totalValue) + " Zen";
   const affectedSets = new Set(filtered.map(it => it.set)).size;
 
+  let marketTotalsHtml = "";
+  if (activeStatuses.has("selecionado")) {
+    const totalAll = filtered.reduce((sum, it) => {
+      const p = marketPrices[itemKey(it)];
+      return sum + (p && p.currency === "ALL" ? p.value : 0);
+    }, 0);
+    const totalDc = filtered.reduce((sum, it) => {
+      const p = marketPrices[itemKey(it)];
+      return sum + (p && p.currency === "DC" ? p.value : 0);
+    }, 0);
+    marketTotalsHtml = `
+      <div class="stat-card">
+        <div class="stat-label">Total ALL</div>
+        <div class="stat-value gold">${totalAll.toLocaleString("pt-BR")}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total DC</div>
+        <div class="stat-value gold">${totalDc.toLocaleString("pt-BR")}</div>
+      </div>
+    `;
+  }
+
   el.innerHTML = `
     <div class="stat-card">
       <div class="stat-label">Itens filtrados</div>
@@ -1096,6 +1118,7 @@ function renderFilteredStats(filtered) {
       <div class="stat-label">Sets afetados</div>
       <div class="stat-value">${affectedSets}</div>
     </div>
+    ${marketTotalsHtml}
   `;
 }
 
