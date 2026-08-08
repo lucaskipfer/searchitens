@@ -463,6 +463,14 @@
             <option value="4">Preparação: ⭐⭐⭐⭐</option>
             <option value="5">Preparação: ⭐⭐⭐⭐⭐</option>
           </select>
+          <select id="parteFilter" title="Filtrar por parte do equipamento">
+            <option value="all">Parte: todas</option>
+            <option value="Helm">Helm</option>
+            <option value="Armor">Armor</option>
+            <option value="Pants">Pants</option>
+            <option value="Gloves">Gloves</option>
+            <option value="Boots">Boots</option>
+          </select>
         </div>
       </div>
       <div class="bonus-filters" id="bonusFilters"></div>
@@ -796,12 +804,14 @@ function getVisibleItems() {
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
   const obtencaoFilter = document.getElementById("obtencaoFilter").value;
   const preparacaoFilter = document.getElementById("preparacaoFilter").value;
+  const parteFilter = document.getElementById("parteFilter").value;
   const setInfo = new Map(sets.map(s => [s.set, s]));
 
   return items.filter(it => {
     const key = itemKey(it);
     const status = getStatus(key);
     if (activeStatuses.size > 0 && !activeStatuses.has(status)) return false;
+    if (parteFilter !== "all" && it.parte !== parteFilter) return false;
     if (search) {
       const hay = (it.set + " " + it.parte + " " + (it.excellent || []).join(" ")).toLowerCase();
       if (!hay.includes(search)) return false;
@@ -1092,6 +1102,7 @@ function renderFilteredStats(filtered) {
 document.getElementById("searchInput").addEventListener("input", render);
 document.getElementById("obtencaoFilter").addEventListener("change", render);
 document.getElementById("preparacaoFilter").addEventListener("change", render);
+document.getElementById("parteFilter").addEventListener("change", render);
 setupSideSectionToggles();
 setupStatusFilterChips();
 document.getElementById("clearAllBtn").addEventListener("click", () => {
