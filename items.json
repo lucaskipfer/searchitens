@@ -2025,5 +2025,68 @@
                           "Max Life",
                           "Max SD"
                       ]
+    },
+    {
+        "set":  "Demonic",
+        "parte":  "Helm",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Demonic",
+        "parte":  "Armor",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Demonic",
+        "parte":  "Pants",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Demonic",
+        "parte":  "Gloves",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Demonic",
+        "parte":  "Boots",
+        "level":  "+7",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
     }
 ]
