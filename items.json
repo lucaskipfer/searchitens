@@ -2086,7 +2086,8 @@
         "addLife":  3,
         "excellent":  [
                           "Max Life",
-                          "Defense Success"
+                          "Defense Success",
+                          "Zen Drop"
                       ]
     }
 ]
