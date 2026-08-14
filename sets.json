@@ -202,5 +202,47 @@
         "classe":  "Summoner",
         "bonus":  "Reflect Damage +2%",
         "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Phoenix Soul",
+        "classe":  "RF",
+        "bonus":  "Max Life +3000",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Succubus",
+        "classe":  "Summoner",
+        "bonus":  "Attack Speed +40",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Sunlight",
+        "classe":  "DL",
+        "bonus":  "Max SD +8%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Volcano",
+        "classe":  "MG",
+        "bonus":  "Damage Decrease +4%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Sylphid Ray",
+        "classe":  "Elf",
+        "bonus":  "Reflect Damage +4%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Venom Mist",
+        "classe":  "DW",
+        "bonus":  "Double Damage +1%",
+        "valorTotalBZen":  ""
+    },
+    {
+        "set":  "Dragon Knight",
+        "classe":  "BK",
+        "bonus":  "Max Life +3000",
+        "valorTotalBZen":  ""
     }
 ]

@@ -2089,5 +2089,408 @@
                           "Defense Success",
                           "Zen Drop"
                       ]
+    },
+    {
+        "set":  "Phoenix Soul",
+        "parte":  "Helm",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Phoenix Soul",
+        "parte":  "Armor",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Phoenix Soul",
+        "parte":  "Pants",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Phoenix Soul",
+        "parte":  "Boots",
+        "level":  "+2",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Succubus",
+        "parte":  "Helm",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Succubus",
+        "parte":  "Armor",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  105,
+        "addLife":  7,
+        "excellent":  [
+                          "Max Life",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Succubus",
+        "parte":  "Pants",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Succubus",
+        "parte":  "Gloves",
+        "level":  "+3",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Succubus",
+        "parte":  "Boots",
+        "level":  "+3",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Sunlight",
+        "parte":  "Helm",
+        "level":  "+7",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Sunlight",
+        "parte":  "Armor",
+        "level":  "+3",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Sunlight",
+        "parte":  "Pants",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Sunlight",
+        "parte":  "Gloves",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Sunlight",
+        "parte":  "Boots",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Volcano",
+        "parte":  "Armor",
+        "level":  "+0",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Max Life",
+                          "Max SD",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Volcano",
+        "parte":  "Pants",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Volcano",
+        "parte":  "Gloves",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Luck",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Volcano",
+        "parte":  "Boots",
+        "level":  "+5",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Sylphid Ray",
+        "parte":  "Helm",
+        "level":  "+3",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Sylphid Ray",
+        "parte":  "Armor",
+        "level":  "+5",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max Life",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Sylphid Ray",
+        "parte":  "Pants",
+        "level":  "+8",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Sylphid Ray",
+        "parte":  "Gloves",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Sylphid Ray",
+        "parte":  "Boots",
+        "level":  "+11",
+        "precoZen":  null,
+        "addDef":  75,
+        "addLife":  5,
+        "excellent":  [
+                          "Luck",
+                          "Max SD",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Venom Mist",
+        "parte":  "Helm",
+        "level":  "+2",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Luck",
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Venom Mist",
+        "parte":  "Armor",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  15,
+        "addLife":  1,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Venom Mist",
+        "parte":  "Pants",
+        "level":  "+5",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Damage Decrease",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Venom Mist",
+        "parte":  "Gloves",
+        "level":  "+10",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Luck",
+                          "Reflect",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Venom Mist",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Dragon Knight",
+        "parte":  "Helm",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Max SD",
+                          "Damage Decrease"
+                      ]
+    },
+    {
+        "set":  "Dragon Knight",
+        "parte":  "Armor",
+        "level":  "+4",
+        "precoZen":  null,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Luck",
+                          "Max Life",
+                          "Damage Decrease",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Dragon Knight",
+        "parte":  "Pants",
+        "level":  "+2",
+        "precoZen":  null,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Reflect"
+                      ]
+    },
+    {
+        "set":  "Dragon Knight",
+        "parte":  "Gloves",
+        "level":  "+1",
+        "precoZen":  null,
+        "addDef":  30,
+        "addLife":  2,
+        "excellent":  [
+                          "Max Life"
+                      ]
+    },
+    {
+        "set":  "Dragon Knight",
+        "parte":  "Boots",
+        "level":  "+6",
+        "precoZen":  null,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Luck",
+                          "Max SD"
+                      ]
     }
 ]
