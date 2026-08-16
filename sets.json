@@ -60,6 +60,12 @@
         "valorTotalBZen":  "10.52"
     },
     {
+        "set":  "Light Plate",
+        "classe":  "DL",
+        "bonus":  "Excellent Damage Rate +2%",
+        "valorTotalBZen":  "12.902"
+    },
+    {
         "set":  "Sphinx",
         "classe":  "DW / MG",
         "bonus":  "Max Life +1500",

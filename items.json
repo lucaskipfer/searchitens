@@ -2492,5 +2492,63 @@
                           "Luck",
                           "Max SD"
                       ]
+    },
+    {
+        "set":  "Light Plate",
+        "parte":  "Helm",
+        "level":  "+1",
+        "precoZen":  1458000000,
+        "addDef":  60,
+        "addLife":  4,
+        "excellent":  [
+                          "Max SD"
+                      ]
+    },
+    {
+        "set":  "Light Plate",
+        "parte":  "Armor",
+        "level":  "+6",
+        "precoZen":  4114000000,
+        "addDef":  90,
+        "addLife":  6,
+        "excellent":  [
+                          "Max Life",
+                          "Defense Success"
+                      ]
+    },
+    {
+        "set":  "Light Plate",
+        "parte":  "Pants",
+        "level":  "+0",
+        "precoZen":  850000000,
+        "addDef":  0,
+        "addLife":  0,
+        "excellent":  [
+                          "Defense Success",
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Light Plate",
+        "parte":  "Gloves",
+        "level":  "+9",
+        "precoZen":  3024000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Zen Drop"
+                      ]
+    },
+    {
+        "set":  "Light Plate",
+        "parte":  "Boots",
+        "level":  "+11",
+        "precoZen":  3456000000,
+        "addDef":  45,
+        "addLife":  3,
+        "excellent":  [
+                          "Luck",
+                          "Max SD"
+                      ]
     }
 ]
